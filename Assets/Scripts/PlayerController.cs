@@ -5,29 +5,28 @@ using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerController : MonoBehaviour
 {
-    int turn = 0; // Should be in Level Manager
-    int turnMax; // Same
+    LevelManager lm;
 
     GameObject player;
+    Rigidbody rb;
 
-    public GameObject[] prefabPuck; // Should Be in Level Manager
     Vector3 currentPoint;
+
+    public float force = 20f;
+    float rate = 10f;
+    float forceMin = 20f;
+    float forceMax = 40f;
 
     static bool turnStarted;
     static bool inPrep;
-    static bool isCharged;
     static bool isLaunched;
     static bool isInstant;
-    static bool isStopped;
 
-    void Start()
+    private void Start()
     {
-        // On Level Start, find array of pucks for level
-            // LevelManager.AssignPucks()
-                /* For length of puckCount[]
-                   Assign puckPrefab to slot */
+        lm = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager> ();
+        Debug.Log(lm.ToString());
     }
-
     void Update()
     {
         if (inPrep)
@@ -37,15 +36,14 @@ public class PlayerController : MonoBehaviour
 
         if (!turnStarted)
         {
-            // For each rounds
-            if (turn <= turnMax)
+            // For each turn
+            if (lm.turn <= lm.turnMax)
             {
-                // Init the Turn
-                StartTurn(turn);
-                // Shuffle board
+                // Init the turn
+                StartTurn(lm.turn);
             }
             // After all the turns
-            else if (turn == turnMax + 1)
+            else if (lm.turn == lm.turnMax + 1)
             {
                 // Scores
                 //scores();
@@ -53,22 +51,47 @@ public class PlayerController : MonoBehaviour
                 //DestryAllPlayers();
             }
         }
+        else 
+        {
+            // controller
+            Play();
+        }
 
-        Play();
+        
     }
 
     void AimMovement()
     { 
-        // Move Left and Right in Fixed parameters
+        // Take Input
         float horizontal = Input.GetAxis("Horizontal");
-        transform.Translate (Vector3.right * horizontal * 3 * Time.deltaTime);
 
         // Set Bounds
-
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (transform.position.x <= -4.5f || rb.transform.position.x <= -4.5f)
         {
-            
+            transform.position = new Vector3(-4.5f, transform.position.y, transform.position.z);
+            rb.transform.position = new Vector3(-4.5f, transform.position.y, transform.position.z);
+        }
+        else if (transform.position.x >= 4.5f || rb.transform.position.x >= 4.5f)
+        {
+            transform.position = new Vector3(4.5f, transform.position.y, transform.position.z);
+            rb.transform.position = new Vector3(4.5f, transform.position.y, transform.position.z);
+        }
+
+        // Move
+        transform.Translate (Vector3.right * horizontal * 3 * Time.deltaTime);
+        rb.transform.Translate(Vector3.right * horizontal * 3 * Time.deltaTime);
+
+        // When space is held, charge force amount
+        if (Input.GetKey(KeyCode.Space))
+        {
+            // Charge
+            force = force + (rate * Time.deltaTime);
+
+            // Flux other direction
+            if (force >= forceMax || force <= forceMin)
+            {
+                rate = -rate;
+            }            
         }
 
         
@@ -77,23 +100,22 @@ public class PlayerController : MonoBehaviour
     {
         // Start Turn
         turnStarted = true;
+        inPrep = true;
 
         // Enable UI
 
         // Spawn Puck
         SpawnPuck(turn);
-
-        
     }
     void SpawnPuck(int num)
     {
         // If player is not created, creat it.
         if (!isInstant)
         {
-            isStopped = false;
             isLaunched = false;
 
-            player = Instantiate(prefabPuck[num], transform.position, transform.rotation) as GameObject;
+            player = Instantiate(lm.prefabPuck[num], transform.position, transform.rotation) as GameObject;
+            rb = player.GetComponent<Rigidbody>();
 
             isInstant = true;
         }
@@ -101,44 +123,45 @@ public class PlayerController : MonoBehaviour
 
     void Play()
     {
+        // In aiming phase
         if (!isLaunched)
         {
-            // Enable Player Aim Capabilites
-            StartCoroutine(PrepLaunch());
+            // When space is released, launch
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                inPrep = false;
+                Launch();
+            }
         }
         else
         {
             // Detect when puck has stopped
-            if (player.GetComponent<Rigidbody>().linearVelocity.magnitude < 0.1)
+            if (rb.linearVelocity.magnitude < 0.1)
             {
                 ChangeTurn();
-                Debug.Log("Is Not moving");
+                Debug.Log("Is Not Moving");
             }
         }
             
     }
-    IEnumerator PrepLaunch()
-    {
-        while (!isLaunched)
-        {
-            inPrep = true;
-
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-
-                Launch();
-                yield return null;
-            }
-        }
-    }
 
     void Launch()
     {
+        isLaunched = true;
 
+        // Need to add angle
+
+        //Apply Force
+        Debug.Log("Launched");
+        player.GetComponent<Rigidbody>().AddForce (Vector3.forward * force, ForceMode.Impulse);
     }
 
     void ChangeTurn()
     {
-
+        // Reset variables
+        force = forceMin;
+        lm.turn += 1;
+        isInstant = false;
+        turnStarted = false;
     }
 }
