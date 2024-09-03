@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
@@ -13,9 +14,12 @@ public class PlayerController : MonoBehaviour
     Vector3 currentPoint;
 
     public float force = 20f;
-    float rate = 10f;
+    float forceRate = 10f;
     float forceMin = 20f;
     float forceMax = 40f;
+    public float angle;
+    float angleRate = 1f;
+    Vector3 angleApplied = Vector3.forward;
 
     static bool turnStarted;
     static bool inPrep;
@@ -61,7 +65,23 @@ public class PlayerController : MonoBehaviour
     }
 
     void AimMovement()
-    { 
+    {
+        // Angle Swing
+        angle = angle + (angleRate * Time.deltaTime);
+
+        // Set angle as a Vector3
+        angleApplied = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
+
+        Debug.DrawRay(rb.transform.position, angleApplied, Color.green);
+
+        // Angle Bounds
+        if (angle <= 0.45f || angle >= 2.7f)
+        {
+            angleRate = -angleRate;
+        }
+        
+
+
         // Take Input
         float horizontal = Input.GetAxis("Horizontal");
 
@@ -84,14 +104,18 @@ public class PlayerController : MonoBehaviour
         // When space is held, charge force amount
         if (Input.GetKey(KeyCode.Space))
         {
+            angleRate = 0;
+
             // Charge
-            force = force + (rate * Time.deltaTime);
+            force = force + (forceRate * Time.deltaTime);
 
             // Flux other direction
             if (force >= forceMax || force <= forceMin)
             {
-                rate = -rate;
-            }            
+                forceRate = -forceRate;
+            }
+            
+
         }
 
         
@@ -153,13 +177,15 @@ public class PlayerController : MonoBehaviour
 
         //Apply Force
         Debug.Log("Launched");
-        player.GetComponent<Rigidbody>().AddForce (Vector3.forward * force, ForceMode.Impulse);
+        player.GetComponent<Rigidbody>().AddForce (angleApplied * force, ForceMode.Impulse);
     }
 
     void ChangeTurn()
     {
         // Reset variables
         force = forceMin;
+        angleApplied = Vector3.forward;
+        angleRate = 1f;
         lm.turn += 1;
         isInstant = false;
         turnStarted = false;
