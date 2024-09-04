@@ -6,17 +6,17 @@ using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerController : MonoBehaviour
 {
+    
     LevelManager lm;
 
     GameObject player;
     Rigidbody rb;
 
-    Vector3 currentPoint;
-
     public float force = 20f;
     float forceRate = 10f;
     float forceMin = 20f;
     float forceMax = 40f;
+
     public float angle;
     float angleRate = 1f;
     Vector3 angleApplied = Vector3.forward;
@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         lm = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager> ();
-        Debug.Log(lm.ToString());
     }
     void Update()
     {
@@ -57,7 +56,7 @@ public class PlayerController : MonoBehaviour
         }
         else 
         {
-            // controller
+            // Run Game Functinaliy
             Play();
         }
 
@@ -114,8 +113,8 @@ public class PlayerController : MonoBehaviour
             {
                 forceRate = -forceRate;
             }
-            
 
+            Debug.DrawRay(rb.transform.position, angleApplied * (force/10), Color.blue);
         }
 
         
@@ -159,8 +158,9 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            
             // Detect when puck has stopped
-            if (rb.linearVelocity.magnitude < 0.1)
+            if (rb.linearVelocity.magnitude < 0.01)
             {
                 ChangeTurn();
                 Debug.Log("Is Not Moving");
@@ -171,13 +171,13 @@ public class PlayerController : MonoBehaviour
 
     void Launch()
     {
-        isLaunched = true;
-
         // Need to add angle
 
         //Apply Force
         Debug.Log("Launched");
         player.GetComponent<Rigidbody>().AddForce (angleApplied * force, ForceMode.Impulse);
+        StartCoroutine(DelayCheck());
+        
     }
 
     void ChangeTurn()
@@ -189,5 +189,12 @@ public class PlayerController : MonoBehaviour
         lm.turn += 1;
         isInstant = false;
         turnStarted = false;
+    }
+
+    IEnumerator DelayCheck()
+    {
+        yield return new WaitForSeconds(1f);
+        isLaunched = true;
+        Debug.Log("Now checking for stop");
     }
 }
