@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
         {
             isLaunched = false;
 
-            player = Instantiate(lm.prefabPuck[num], transform.position, transform.rotation) as GameObject;
+            player = Instantiate(lm.prefabPlayerPuck[num], transform.position, transform.rotation) as GameObject;
             rb = player.GetComponent<Rigidbody>();
 
             isInstant = true;
