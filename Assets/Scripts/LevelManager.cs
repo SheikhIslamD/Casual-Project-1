@@ -7,8 +7,14 @@ public class LevelManager : MonoBehaviour
     public int turnMax;
     public int scoreToBeat;
 
-    public GameObject[] prefabPuck;
+    public GameObject[] prefabPlayerPuck;
+    public GameObject[] prefabEnemyPuck;
 
+    private void Start()
+    {
+        //
+        turnMax = prefabPlayerPuck.Length;
+    }
     void ScoreRound()
     {
         //Compare the player score to enemy score
