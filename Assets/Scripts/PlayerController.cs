@@ -40,16 +40,28 @@ public class PlayerController : MonoBehaviour
         if (!turnStarted)
         {
             // For each turn
-            if (lm.turn <= lm.turnMax)
+            if (lm.turn < lm.turnMax)
             {
                 // Init the turn
                 StartTurn(lm.turn);
             }
             // After all the turns
-            else if (lm.turn == lm.turnMax + 1)
+            else if (lm.turn == lm.turnMax)
             {
                 // Scores
-                //scores();
+                lm.ScoreRound();
+
+                // Return Score Performance
+                if (lm.starTotal != 0)
+                {
+                    Debug.Log("Congratulations! Total stars recieved is: " + lm.starTotal);
+                }
+                else
+                {
+                    Debug.Log("Oh no! the Dog's won this time. Retry?");
+                }
+                
+
                 //TODO Check? Remove all players objects
                 //DestryAllPlayers();
             }
@@ -137,7 +149,7 @@ public class PlayerController : MonoBehaviour
         {
             isLaunched = false;
 
-            player = Instantiate(lm.prefabPlayerPuck[num], transform.position, transform.rotation) as GameObject;
+            player = Instantiate(lm.prefabPlayerPuck[num], new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z), transform.rotation) as GameObject;
             rb = player.GetComponent<Rigidbody>();
 
             isInstant = true;
