@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
         //Compare the player score to enemy score
         //For positive feedback loop maybe use a "star" system. i.e. 1 star for win by 1, 2 starts for win by 2, and 3 for 3+
 
-        if (ScoreTracker.playerScore > ScoreTracker.enemyScore)
+        if (ScoreTracker.playerScore >= ScoreTracker.enemyScore)
         {
             if (ScoreTracker.playerScore >= ScoreTracker.enemyScore + star2Diff)
             {
