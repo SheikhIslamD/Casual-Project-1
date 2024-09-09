@@ -31,6 +31,12 @@ public class PuckAbility : MonoBehaviour
         }
     }
 
+    public void UseAbility()
+    {
+        GetObjects();
+
+    }
+
     public void GetObjects()
     {
         int i = 0;

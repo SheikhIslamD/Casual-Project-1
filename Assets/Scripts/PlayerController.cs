@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
         {
             isLaunched = false;
 
-            player = Instantiate(lm.prefabPlayerPuck[num], new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z), transform.rotation) as GameObject;
+            player = Instantiate(lm.prefabPlayerPuck[num], new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z), Quaternion.Euler(new Vector3(-90f,0f,0f)));
             rb = player.GetComponent<Rigidbody>();
 
             isInstant = true;
