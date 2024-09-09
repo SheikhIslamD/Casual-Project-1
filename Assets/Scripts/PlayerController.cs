@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,9 +27,15 @@ public class PlayerController : MonoBehaviour
     static bool isLaunched;
     static bool isInstant;
 
+    InputAction movementKeys;
+    InputAction jumpKey;
+
     private void Start()
     {
         lm = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager> ();
+
+        movementKeys = InputSystem.actions.FindAction("Move");
+        jumpKey = InputSystem.actions.FindAction("Jump");
     }
     void Update()
     {
@@ -94,7 +101,10 @@ public class PlayerController : MonoBehaviour
 
 
         // Take Input
-        float horizontal = Input.GetAxis("Horizontal");
+        //(old input system) float horizontal = Input.GetAxis("Horizontal");
+        
+        //ISSUE here
+        float horizontal = movementKeys.ReadValue<Vector2>();
 
         // Set Bounds
         if (transform.position.x <= -4.5f || rb.transform.position.x <= -4.5f)
@@ -113,7 +123,7 @@ public class PlayerController : MonoBehaviour
         rb.transform.Translate(Vector3.right * horizontal * 3 * Time.deltaTime);
 
         // When space is held, charge force amount
-        if (Input.GetKey(KeyCode.Space))
+        if (jumpKey.IsPressed())
         {
             angleRate = 0;
 
@@ -162,7 +172,7 @@ public class PlayerController : MonoBehaviour
         if (!isLaunched)
         {
             // When space is released, launch
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (jumpKey.WasReleasedThisFrame())
             {
                 inPrep = false;
                 Launch();
