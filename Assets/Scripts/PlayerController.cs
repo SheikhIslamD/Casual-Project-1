@@ -1,25 +1,28 @@
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     
     LevelManager lm;
 
+    Image arrowVisual;
+    RectTransform arrowScale;
+
     GameObject player;
     Rigidbody rb;
+
+    int turn = 0;
+    int turnMax;
 
     public float force = 20f;
     float forceRate = 10f;
     float forceMin = 20f;
     float forceMax = 40f;
 
-    public float angle = 180f;    
+    public float angle = 180f;
     float angleRate = 20f;
-
     float launchAngle = 1.6f;
     float directionRate = -0.36f;
     Vector3 angleApplied = Vector3.forward;
@@ -33,6 +36,10 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         lm = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager> ();
+        turnMax = lm.prefabPlayerPuck.Length;
+
+        arrowScale = GameObject.Find("Arrow").GetComponent<RectTransform>();
+        arrowVisual = GameObject.Find("Arrow").GetComponent<Image>();
     }
     void Update()
     {
@@ -48,30 +55,19 @@ public class PlayerController : MonoBehaviour
             if (!turnStarted)
             {
                 // For each turn
-                if (lm.turn < lm.turnMax)
+                if (turn < turnMax)
                 {
                     // Init the turn
-                    StartTurn(lm.turn);
+                    StartTurn(turn);
                 }
                 // After all the turns
-                else if (lm.turn == lm.turnMax)
+                else if (turn == turnMax)
                 {
                     // Scores
                     lm.ScoreRound();
 
-                    // Return Score Performance
-                    if (lm.starTotal != 0)
-                    {
-                        Debug.Log("Congratulations! Total stars recieved is: " + lm.starTotal);
-                    }
-                    else
-                    {
-                        Debug.Log("Oh no! the Dog's won this time. Retry?");
-                    }
-
+                    // Freeze for endScreen
                     playing = false;
-                    //TODO Check? Remove all players objects
-                    //DestryAllPlayers();
                 }
             }
             else
@@ -84,6 +80,9 @@ public class PlayerController : MonoBehaviour
 
     void AimMovement()
     {
+        //Turn on Arrow UI
+        arrowVisual.enabled = true;
+
         //Visualization for model
         angle = angle + (angleRate * Time.deltaTime);
         // Angle Bounds
@@ -93,6 +92,7 @@ public class PlayerController : MonoBehaviour
         }
         // Rotate Model
         rb.transform.rotation = Quaternion.Euler(-90f, angle, 0f);
+        arrowScale.rotation = Quaternion.Euler(-90f, 0f, angle);
 
         //Adjust launch Angle
         launchAngle = launchAngle + (directionRate * Time.deltaTime);
@@ -145,6 +145,7 @@ public class PlayerController : MonoBehaviour
                 forceRate = -forceRate;
             }
 
+            arrowScale.sizeDelta = new Vector2(2.8f, 1f + (force / 10));
             Debug.DrawRay(rb.transform.position, angleApplied * (force/10), Color.blue);
         }
 
@@ -183,6 +184,7 @@ public class PlayerController : MonoBehaviour
             // When space is released, launch
             if (Input.GetKeyUp(KeyCode.Space))
             {
+                arrowVisual.enabled = false;
                 inPrep = false;
                 Launch();
             }
@@ -191,7 +193,7 @@ public class PlayerController : MonoBehaviour
         {
             
             // Detect when puck has stopped
-            if (rb.linearVelocity.magnitude < 0.01)
+            if (rb.linearVelocity.magnitude < 0.01 && lm.VelocityZero())
             {
                 ChangeTurn();
                 Debug.Log("Is Not Moving");
@@ -220,7 +222,12 @@ public class PlayerController : MonoBehaviour
         angleApplied = Vector3.forward;
         angleRate = 20f;
         directionRate = -0.36f;
-        lm.turn += 1;
+
+        //UI Set for PLACEHOLDER arrow
+        arrowScale.sizeDelta = new Vector2(2.8f, 2.4f);
+
+        // Add to turn count and prep for next turn
+        turn += 1;
         isInstant = false;
         turnStarted = false;
     }
