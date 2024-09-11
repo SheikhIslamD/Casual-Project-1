@@ -519,6 +519,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Core Game Objects
       objectReference: {fileID: 0}
+    - target: {fileID: 3196059482206313931, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020397074755467366, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.1047645
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020397074755467366, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.4748998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020397074755467366, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.209403
+      objectReference: {fileID: 0}
     - target: {fileID: 5678767026918892378, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.1047645
