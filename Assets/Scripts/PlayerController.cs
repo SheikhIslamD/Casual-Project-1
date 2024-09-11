@@ -1,8 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
+//using static UnityEditor.Searcher.SearcherWindow.Alignment;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -48,6 +49,8 @@ public class PlayerController : MonoBehaviour
 
         movementKeys = InputSystem.actions.FindAction("Move");
         jumpKey = InputSystem.actions.FindAction("Jump");
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     void Update()
     {
@@ -121,8 +124,7 @@ public class PlayerController : MonoBehaviour
         // Take Input
         //(old input system) float horizontal = Input.GetAxis("Horizontal");
         
-        //ISSUE here
-        float horizontal = movementKeys.ReadValue<Vector2>();
+        float horizontal = movementKeys.ReadValue<Vector2>().x;
 
         // Set Bounds
         if (transform.position.x <= -6.5f || rb.transform.position.x <= -6.5f)
@@ -248,5 +250,14 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         isLaunched = true;
         Debug.Log("Now checking for stop");
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        lm = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
+        turnMax = lm.prefabPlayerPuck.Length;
+
+        arrowScale = GameObject.Find("Arrow").GetComponent<RectTransform>();
+        arrowVisual = GameObject.Find("Arrow").GetComponent<Image>();
     }
 }
