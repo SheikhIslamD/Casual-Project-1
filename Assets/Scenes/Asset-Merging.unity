@@ -2232,6 +2232,7 @@ GameObject:
   - component: {fileID: 1571005149}
   - component: {fileID: 1571005148}
   - component: {fileID: 1571005147}
+  - component: {fileID: 1571005150}
   m_Layer: 5
   m_Name: Next Level Button
   m_TagString: Untagged
@@ -2341,6 +2342,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571005145}
   m_CullTransparentMesh: 1
+--- !u!114 &1571005150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571005145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fca2303bc90b4afa98c7d70230af7af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newSceneName: 
+  currentSceneRoot: {fileID: 0}
 --- !u!1 &1665052639
 GameObject:
   m_ObjectHideFlags: 0
@@ -2671,6 +2686,7 @@ GameObject:
   - component: {fileID: 1749252839}
   - component: {fileID: 1749252838}
   - component: {fileID: 1749252837}
+  - component: {fileID: 1749252840}
   m_Layer: 5
   m_Name: Replay Button
   m_TagString: Untagged
@@ -2780,6 +2796,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1749252835}
   m_CullTransparentMesh: 1
+--- !u!114 &1749252840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749252835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fca2303bc90b4afa98c7d70230af7af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newSceneName: 
+  currentSceneRoot: {fileID: 0}
 --- !u!1 &1800210566 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4305207569476479301, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
@@ -2818,6 +2848,7 @@ GameObject:
   - component: {fileID: 1842400029}
   - component: {fileID: 1842400028}
   - component: {fileID: 1842400027}
+  - component: {fileID: 1842400030}
   m_Layer: 5
   m_Name: Menu Button
   m_TagString: Untagged
@@ -2888,7 +2919,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1842400028}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1842400030}
+        m_TargetAssemblyTypeName: SceneHandler, Assembly-CSharp
+        m_MethodName: LoadNewSceneAndHideCurrent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1842400028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2927,6 +2970,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842400025}
   m_CullTransparentMesh: 1
+--- !u!114 &1842400030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842400025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fca2303bc90b4afa98c7d70230af7af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newSceneName: UI Main Menu
+  currentSceneRoot: {fileID: 2007401739}
 --- !u!1 &1875972374
 GameObject:
   m_ObjectHideFlags: 0
@@ -3137,7 +3194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}

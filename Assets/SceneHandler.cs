@@ -16,7 +16,7 @@ public class SceneHandler : MonoBehaviour
         if (!string.IsNullOrEmpty(newSceneName))
         {
             // Load the new scene additively (i.e., without unloading the current scene)
-            SceneManager.LoadScene(newSceneName, LoadSceneMode.Additive);
+            SceneManager.LoadScene(newSceneName);
 
             // Disable the current scene root if it exists
             if (currentSceneRoot != null)

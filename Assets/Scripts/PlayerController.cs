@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    
+
     LevelManager lm;
 
     Image arrowVisual;
@@ -15,9 +15,6 @@ public class PlayerController : MonoBehaviour
 
     GameObject player;
     Rigidbody rb;
-
-    int turn = 0;
-    int turnMax;
 
     public float force = 20f;
     float forceRate = 10f;
@@ -30,7 +27,7 @@ public class PlayerController : MonoBehaviour
     float directionRate = -0.36f;
     Vector3 angleApplied = Vector3.forward;
 
-    static bool playing = true;
+    public static bool playing;
     static bool turnStarted;
     static bool inPrep;
     static bool isLaunched;
@@ -39,14 +36,8 @@ public class PlayerController : MonoBehaviour
     InputAction movementKeys;
     InputAction jumpKey;
 
-    private void Start()
+    private void Awake()
     {
-        lm = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager> ();
-        turnMax = lm.prefabPlayerPuck.Length;
-
-        arrowScale = GameObject.Find("Arrow").GetComponent<RectTransform>();
-        arrowVisual = GameObject.Find("Arrow").GetComponent<Image>();
-
         movementKeys = InputSystem.actions.FindAction("Move");
         jumpKey = InputSystem.actions.FindAction("Jump");
 
@@ -66,16 +57,19 @@ public class PlayerController : MonoBehaviour
             if (!turnStarted)
             {
                 // For each turn
-                if (turn < turnMax)
+                if (lm.turn < lm.turnMax)
                 {
                     // Init the turn
-                    StartTurn(turn);
+                    StartTurn(lm.turn);
                 }
                 // After all the turns
-                else if (turn == turnMax)
+                else if (lm.turn == lm.turnMax)
                 {
                     // Scores
                     lm.ScoreRound();
+
+                    // Destroy All Pieces
+                    //lm.DestroyPiece();
 
                     // Freeze for endScreen
                     playing = false;
@@ -117,13 +111,13 @@ public class PlayerController : MonoBehaviour
 
         Debug.DrawRay(rb.transform.position, angleApplied, Color.green);
 
-        
 
-        
+
+
 
         // Take Input
         //(old input system) float horizontal = Input.GetAxis("Horizontal");
-        
+
         float horizontal = movementKeys.ReadValue<Vector2>().x;
 
         // Set Bounds
@@ -139,7 +133,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Move
-        transform.Translate (Vector3.right * horizontal * 3 * Time.deltaTime);
+        transform.Translate(Vector3.right * horizontal * 3 * Time.deltaTime);
         rb.transform.position = new Vector3(transform.position.x, 1.056f, -10.26124f);
 
         // When space is held, charge force amount
@@ -159,10 +153,10 @@ public class PlayerController : MonoBehaviour
             }
 
             arrowScale.sizeDelta = new Vector2(2.8f, 1f + (force / 10));
-            Debug.DrawRay(rb.transform.position, angleApplied * (force/10), Color.blue);
+            Debug.DrawRay(rb.transform.position, angleApplied * (force / 10), Color.blue);
         }
 
-        
+
     }
     void StartTurn(int turn)
     {
@@ -204,15 +198,15 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            
+
             // Detect when puck has stopped
-            if (rb.linearVelocity.magnitude < 0.01 && lm.VelocityZero())
+            if (rb.linearVelocity.magnitude <= 0.01 && lm.VelocityZero())
             {
                 ChangeTurn();
                 Debug.Log("Is Not Moving");
             }
         }
-            
+
     }
 
     void Launch()
@@ -221,9 +215,9 @@ public class PlayerController : MonoBehaviour
 
         //Apply Force
         Debug.Log("Launched");
-        player.GetComponent<Rigidbody>().AddForce (angleApplied * force, ForceMode.Impulse);
+        player.GetComponent<Rigidbody>().AddForce(angleApplied * force, ForceMode.Impulse);
         StartCoroutine(DelayCheck());
-        
+
     }
 
     void ChangeTurn()
@@ -240,7 +234,7 @@ public class PlayerController : MonoBehaviour
         arrowScale.sizeDelta = new Vector2(2.8f, 2.4f);
 
         // Add to turn count and prep for next turn
-        turn += 1;
+        lm.turn += 1;
         isInstant = false;
         turnStarted = false;
     }
@@ -255,7 +249,6 @@ public class PlayerController : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         lm = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
-        turnMax = lm.prefabPlayerPuck.Length;
 
         arrowScale = GameObject.Find("Arrow").GetComponent<RectTransform>();
         arrowVisual = GameObject.Find("Arrow").GetComponent<Image>();

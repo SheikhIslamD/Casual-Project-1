@@ -1,10 +1,14 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     //Public repositiory to store level information
+    public int turn = 0;
+    public int turnMax;
+
     public int star2Diff, star3Diff;
     Image star1, star2, star3;
     Color starColor = new Color32(195, 167, 18, 255);
@@ -16,15 +20,9 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        inGameCanvas = GameObject.Find("UI").GetComponent<Canvas>();
-        endCanvas = GameObject.Find("End Screen").GetComponent<Canvas>();
+        turnMax = prefabPlayerPuck.Length;
 
-        star1 = GameObject.Find("Star 1").GetComponent<Image>();
-        star2 = GameObject.Find("Star 2").GetComponent<Image>();
-        star3 = GameObject.Find("Star 3").GetComponent<Image>();
-
-        winText = GameObject.Find("Win Text").GetComponent<TextMeshProUGUI>();
-        loseText = GameObject.Find("Lose Text").GetComponent<TextMeshProUGUI>();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     public void ScoreRound()
     {
@@ -71,5 +69,37 @@ public class LevelManager : MonoBehaviour
             if (cat.GetComponent<Rigidbody>().linearVelocity.magnitude > 0.01) return false;
         }
         return true;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Calls on Scene Loaded");
+
+        turn = 0;
+        PlayerController.playing = true;
+
+        inGameCanvas = GameObject.Find("UI").GetComponent<Canvas>();
+        endCanvas = GameObject.Find("End Screen").GetComponent<Canvas>();
+
+        inGameCanvas.enabled = true;
+
+        star1 = GameObject.Find("Star 1").GetComponent<Image>();
+        star2 = GameObject.Find("Star 2").GetComponent<Image>();
+        star3 = GameObject.Find("Star 3").GetComponent<Image>();
+
+        winText = GameObject.Find("Win Text").GetComponent<TextMeshProUGUI>();
+        loseText = GameObject.Find("Lose Text").GetComponent<TextMeshProUGUI>();
+    }
+
+    public void DestroyPiece()
+    {
+        foreach (GameObject dog in prefabEnemyPuck)
+        {
+            Destroy(dog);
+        }
+        foreach (GameObject cat in prefabPlayerPuck)
+        {
+            Destroy(cat);
+        }
     }
 }
