@@ -1,4 +1,7 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -6,45 +9,97 @@ public class LevelManager : MonoBehaviour
     public int turn = 0;
     public int turnMax;
 
-    public int star2Diff;
-    public int star3Diff;
-
-    public int starTotal = 0;
+    public int star2Diff, star3Diff;
+    Image star1, star2, star3;
+    Color starColor = new Color32(195, 167, 18, 255);
+    TextMeshProUGUI winText, loseText;
+    Canvas inGameCanvas, endCanvas;
 
     public GameObject[] prefabPlayerPuck;
     public GameObject[] prefabEnemyPuck;
 
-    private void Start()
+    private void Awake()
     {
         turnMax = prefabPlayerPuck.Length;
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     public void ScoreRound()
     {
         //Compare the player score to enemy score
         //For positive feedback loop maybe use a "star" system. i.e. 1 star for win by 1, 2 starts for win by 2, and 3 for 3+
-
-        if (ScoreTracker.playerScore > ScoreTracker.enemyScore)
+        inGameCanvas.enabled = false;
+        endCanvas.enabled = true;
+        
+        // If player score meets score requirements, allocate stars
+        if (ScoreTracker.playerScore >= ScoreTracker.enemyScore)
         {
-            if (ScoreTracker.playerScore >= ScoreTracker.enemyScore + star2Diff)
+            // UI Win Text
+            winText.enabled = true;
+
+            if (ScoreTracker.playerScore - ScoreTracker.enemyScore >= star2Diff)
             {
-                if (ScoreTracker.playerScore > ScoreTracker.enemyScore + star3Diff)
+                if (ScoreTracker.playerScore - ScoreTracker.enemyScore >= star3Diff)
                 {
                     // UI 3 star
-                    starTotal = 3;
-                    return;
+                    star3.color = starColor;
                 }
                 // UI 2 star
-                starTotal = 2;
-                return;
+                star2.color = starColor;
             }
             // UI 1 star
-            starTotal = 1;
+            star1.color = starColor;
             return;
         }
 
-        // UI lose screen
+        // UI lose Text
+        loseText.enabled = false;
         // Or outright just restart level?
         return;
+    }
 
+    public bool VelocityZero()
+    {
+        foreach (GameObject dog in prefabEnemyPuck)
+        {
+            if (dog.GetComponent<Rigidbody>().linearVelocity.magnitude > 0.01) return false;
+        }
+        foreach (GameObject cat in prefabPlayerPuck)
+        {
+            if (cat.GetComponent<Rigidbody>().linearVelocity.magnitude > 0.01) return false;
+        }
+        return true;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Calls on Scene Loaded");
+
+        turn = 0;
+        PlayerController.playing = true;
+
+        inGameCanvas = GameObject.Find("UI").GetComponent<Canvas>();
+        endCanvas = GameObject.Find("End Screen").GetComponent<Canvas>();
+
+        inGameCanvas.enabled = true;
+
+        star1 = GameObject.Find("Star 1").GetComponent<Image>();
+        star2 = GameObject.Find("Star 2").GetComponent<Image>();
+        star3 = GameObject.Find("Star 3").GetComponent<Image>();
+
+        winText = GameObject.Find("Win Text").GetComponent<TextMeshProUGUI>();
+        loseText = GameObject.Find("Lose Text").GetComponent<TextMeshProUGUI>();
+    }
+
+    public void DestroyPiece()
+    {
+        foreach (GameObject dog in prefabEnemyPuck)
+        {
+            Destroy(dog);
+        }
+        foreach (GameObject cat in prefabPlayerPuck)
+        {
+            Destroy(cat);
+        }
     }
 }

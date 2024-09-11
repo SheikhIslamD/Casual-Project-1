@@ -1,13 +1,17 @@
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
+using UnityEngine.UI;
+//using static UnityEditor.Searcher.SearcherWindow.Alignment;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    
+
     LevelManager lm;
+
+    Image arrowVisual;
+    RectTransform arrowScale;
 
     GameObject player;
     Rigidbody rb;
@@ -17,105 +21,127 @@ public class PlayerController : MonoBehaviour
     float forceMin = 20f;
     float forceMax = 40f;
 
-    public float angle;
-    float angleRate = 1f;
+    public float angle = 180f;
+    float angleRate = 20f;
+    float launchAngle = 1.6f;
+    float directionRate = -0.36f;
     Vector3 angleApplied = Vector3.forward;
 
+    public static bool playing;
     static bool turnStarted;
     static bool inPrep;
     static bool isLaunched;
     static bool isInstant;
 
-    private void Start()
+    InputAction movementKeys;
+    InputAction jumpKey;
+
+    private void Awake()
     {
-        lm = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager> ();
+        movementKeys = InputSystem.actions.FindAction("Move");
+        jumpKey = InputSystem.actions.FindAction("Jump");
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     void Update()
     {
-        if (inPrep)
+        if (playing)
         {
-            AimMovement();
-        }
 
-        if (!turnStarted)
-        {
-            // For each turn
-            if (lm.turn < lm.turnMax)
+
+            if (inPrep)
             {
-                // Init the turn
-                StartTurn(lm.turn);
+                AimMovement();
             }
-            // After all the turns
-            else if (lm.turn == lm.turnMax)
+
+            if (!turnStarted)
             {
-                // Scores
-                lm.ScoreRound();
-
-                // Return Score Performance
-                if (lm.starTotal != 0)
+                // For each turn
+                if (lm.turn < lm.turnMax)
                 {
-                    Debug.Log("Congratulations! Total stars recieved is: " + lm.starTotal);
+                    // Init the turn
+                    StartTurn(lm.turn);
                 }
-                else
+                // After all the turns
+                else if (lm.turn == lm.turnMax)
                 {
-                    Debug.Log("Oh no! the Dog's won this time. Retry?");
-                }
-                
+                    // Scores
+                    lm.ScoreRound();
 
-                //TODO Check? Remove all players objects
-                //DestryAllPlayers();
+                    // Destroy All Pieces
+                    //lm.DestroyPiece();
+
+                    // Freeze for endScreen
+                    playing = false;
+                }
+            }
+            else
+            {
+                // Run Game Functinaliy
+                Play();
             }
         }
-        else 
-        {
-            // Run Game Functinaliy
-            Play();
-        }
-
-        
     }
 
     void AimMovement()
     {
-        // Angle Swing
+        //Turn on Arrow UI
+        arrowVisual.enabled = true;
+
+        //Visualization for model
         angle = angle + (angleRate * Time.deltaTime);
-
-        // Set angle as a Vector3
-        angleApplied = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
-
-        Debug.DrawRay(rb.transform.position, angleApplied, Color.green);
-
         // Angle Bounds
-        if (angle <= 0.45f || angle >= 2.7f)
+        if (angle <= 125f || angle >= 235f)
         {
             angleRate = -angleRate;
         }
-        
+        // Rotate Model
+        rb.transform.rotation = Quaternion.Euler(-90f, angle, 0f);
+        arrowScale.rotation = Quaternion.Euler(-90f, 0f, angle);
+
+        //Adjust launch Angle
+        launchAngle = launchAngle + (directionRate * Time.deltaTime);
+        // Angle Bounds
+        if (launchAngle <= .6f || launchAngle >= 2.57f)
+        {
+            directionRate = -directionRate;
+        }
+        //Angle for launch set to Vector3
+        angleApplied = new Vector3(Mathf.Cos(launchAngle), 0, Mathf.Sin(launchAngle));
+
+        Debug.DrawRay(rb.transform.position, angleApplied, Color.green);
+
+
+
 
 
         // Take Input
-        float horizontal = Input.GetAxis("Horizontal");
+        //(old input system) float horizontal = Input.GetAxis("Horizontal");
+
+        float horizontal = movementKeys.ReadValue<Vector2>().x;
 
         // Set Bounds
-        if (transform.position.x <= -4.5f || rb.transform.position.x <= -4.5f)
+        if (transform.position.x <= -6.5f || rb.transform.position.x <= -6.5f)
         {
-            transform.position = new Vector3(-4.5f, transform.position.y, transform.position.z);
-            rb.transform.position = new Vector3(-4.5f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(-6.5f, transform.position.y, transform.position.z);
+            rb.transform.position = new Vector3(-6.5f, rb.transform.position.y, rb.transform.position.z);
         }
-        else if (transform.position.x >= 4.5f || rb.transform.position.x >= 4.5f)
+        else if (transform.position.x >= 6.5f || rb.transform.position.x >= 6.5f)
         {
-            transform.position = new Vector3(4.5f, transform.position.y, transform.position.z);
-            rb.transform.position = new Vector3(4.5f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(6.5f, transform.position.y, transform.position.z);
+            rb.transform.position = new Vector3(6.5f, rb.transform.position.y, rb.transform.position.z);
         }
 
         // Move
-        transform.Translate (Vector3.right * horizontal * 3 * Time.deltaTime);
-        rb.transform.Translate(Vector3.right * horizontal * 3 * Time.deltaTime);
+        transform.Translate(Vector3.right * horizontal * 3 * Time.deltaTime);
+        rb.transform.position = new Vector3(transform.position.x, 1.056f, -10.26124f);
 
         // When space is held, charge force amount
-        if (Input.GetKey(KeyCode.Space))
+        if (jumpKey.IsPressed())
         {
+            // Stop Rotation
             angleRate = 0;
+            directionRate = 0;
 
             // Charge
             force = force + (forceRate * Time.deltaTime);
@@ -126,10 +152,11 @@ public class PlayerController : MonoBehaviour
                 forceRate = -forceRate;
             }
 
-            Debug.DrawRay(rb.transform.position, angleApplied * (force/10), Color.blue);
+            arrowScale.sizeDelta = new Vector2(2.8f, 1f + (force / 10));
+            Debug.DrawRay(rb.transform.position, angleApplied * (force / 10), Color.blue);
         }
 
-        
+
     }
     void StartTurn(int turn)
     {
@@ -149,7 +176,7 @@ public class PlayerController : MonoBehaviour
         {
             isLaunched = false;
 
-            player = Instantiate(lm.prefabPlayerPuck[num], new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z), transform.rotation) as GameObject;
+            player = Instantiate(lm.prefabPlayerPuck[num], new Vector3(transform.position.x, transform.position.y + .75f, transform.position.z), Quaternion.Euler(new Vector3(-90f, 180f, 0f)));
             rb = player.GetComponent<Rigidbody>();
 
             isInstant = true;
@@ -162,23 +189,24 @@ public class PlayerController : MonoBehaviour
         if (!isLaunched)
         {
             // When space is released, launch
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (jumpKey.WasReleasedThisFrame())
             {
+                arrowVisual.enabled = false;
                 inPrep = false;
                 Launch();
             }
         }
         else
         {
-            
+
             // Detect when puck has stopped
-            if (rb.linearVelocity.magnitude < 0.01)
+            if (rb.linearVelocity.magnitude <= 0.01 && lm.VelocityZero())
             {
                 ChangeTurn();
                 Debug.Log("Is Not Moving");
             }
         }
-            
+
     }
 
     void Launch()
@@ -187,17 +215,25 @@ public class PlayerController : MonoBehaviour
 
         //Apply Force
         Debug.Log("Launched");
-        player.GetComponent<Rigidbody>().AddForce (angleApplied * force, ForceMode.Impulse);
+        player.GetComponent<Rigidbody>().AddForce(angleApplied * force, ForceMode.Impulse);
         StartCoroutine(DelayCheck());
-        
+
     }
 
     void ChangeTurn()
     {
         // Reset variables
         force = forceMin;
+        angle = 180f;
+        launchAngle = 1.6f;
         angleApplied = Vector3.forward;
-        angleRate = 1f;
+        angleRate = 20f;
+        directionRate = -0.36f;
+
+        //UI Set for PLACEHOLDER arrow
+        arrowScale.sizeDelta = new Vector2(2.8f, 2.4f);
+
+        // Add to turn count and prep for next turn
         lm.turn += 1;
         isInstant = false;
         turnStarted = false;
@@ -208,5 +244,13 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         isLaunched = true;
         Debug.Log("Now checking for stop");
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        lm = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
+
+        arrowScale = GameObject.Find("Arrow").GetComponent<RectTransform>();
+        arrowVisual = GameObject.Find("Arrow").GetComponent<Image>();
     }
 }
