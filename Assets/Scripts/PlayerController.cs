@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -33,6 +35,9 @@ public class PlayerController : MonoBehaviour
     static bool isLaunched;
     static bool isInstant;
 
+    InputAction movementKeys;
+    InputAction jumpKey;
+
     private void Start()
     {
         lm = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager> ();
@@ -40,6 +45,9 @@ public class PlayerController : MonoBehaviour
 
         arrowScale = GameObject.Find("Arrow").GetComponent<RectTransform>();
         arrowVisual = GameObject.Find("Arrow").GetComponent<Image>();
+
+        movementKeys = InputSystem.actions.FindAction("Move");
+        jumpKey = InputSystem.actions.FindAction("Jump");
     }
     void Update()
     {
@@ -111,7 +119,10 @@ public class PlayerController : MonoBehaviour
         
 
         // Take Input
-        float horizontal = Input.GetAxis("Horizontal");
+        //(old input system) float horizontal = Input.GetAxis("Horizontal");
+        
+        //ISSUE here
+        float horizontal = movementKeys.ReadValue<Vector2>();
 
         // Set Bounds
         if (transform.position.x <= -6.5f || rb.transform.position.x <= -6.5f)
@@ -130,7 +141,7 @@ public class PlayerController : MonoBehaviour
         rb.transform.position = new Vector3(transform.position.x, 1.056f, -10.26124f);
 
         // When space is held, charge force amount
-        if (Input.GetKey(KeyCode.Space))
+        if (jumpKey.IsPressed())
         {
             // Stop Rotation
             angleRate = 0;
@@ -182,7 +193,7 @@ public class PlayerController : MonoBehaviour
         if (!isLaunched)
         {
             // When space is released, launch
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (jumpKey.WasReleasedThisFrame())
             {
                 arrowVisual.enabled = false;
                 inPrep = false;
