@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a69fa376085dc74ea8680e3c9361603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pieceCam: {fileID: 0}
+  pieceCam: {fileID: 4291366671156398895}
   isSwitched: 0
 --- !u!1 &2205172026714282402
 GameObject:
@@ -1503,6 +1503,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5678767026918892378}
     m_Modifications:
+    - target: {fileID: 3782911353479770226, guid: 93e559f11d5028f42b12dce286b8e849, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4077706019202254030, guid: 93e559f11d5028f42b12dce286b8e849, type: 3}
       propertyPath: m_Name
       value: Player Launcher

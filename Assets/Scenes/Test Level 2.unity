@@ -300,6 +300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc6cb152f4ebddd4495f762d1dc66398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turn: 0
+  turnMax: 0
   star2Diff: 1
   star3Diff: 2
   prefabPlayerPuck:
@@ -917,7 +919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3370681600612842694, guid: 8e53e4e277606c84da6b54fc032b19dc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1150,7 +1152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea5fa585df7e09241a859dab89a1e523, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.060000002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea5fa585df7e09241a859dab89a1e523, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2361,7 +2363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84ad2a5207431ca4989bedbd8376e776, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.28
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84ad2a5207431ca4989bedbd8376e776, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3287,11 +3289,11 @@ SceneRoots:
   - {fileID: 589955771}
   - {fileID: 1379009741}
   - {fileID: 970811318}
+  - {fileID: 1629051399}
   - {fileID: 247981559027470601}
   - {fileID: 801261789}
   - {fileID: 177109963}
   - {fileID: 1451188136}
   - {fileID: 1357503431}
   - {fileID: 2007401743}
-  - {fileID: 1629051399}
   - {fileID: 1733175613}

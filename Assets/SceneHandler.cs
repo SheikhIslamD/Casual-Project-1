@@ -33,4 +33,9 @@ public class SceneHandler : MonoBehaviour
             Debug.LogWarning("New scene name is not set!");
         }
     }
+
+    public void quitGame()
+    {
+        Application.Quit();
+    }
 }
