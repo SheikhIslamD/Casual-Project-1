@@ -118,6 +118,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &150293961 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5678767026918892378, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
+  m_PrefabInstance: {fileID: 1003940836}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &263680843 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8555046904898354361, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
@@ -238,11 +243,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc6cb152f4ebddd4495f762d1dc66398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turn: 0
+  turnMax: 0
   star2Diff: 1
   star3Diff: 2
   prefabPlayerPuck:
   - {fileID: 58344071952303487, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
-  - {fileID: 58344071952303487, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
+  - {fileID: 6122205378930540760, guid: 6da65ca87de201d46a9b650bd32ecfcc, type: 3}
   prefabEnemyPuck:
   - {fileID: 1185385775}
   - {fileID: 1486817690}
@@ -1324,7 +1331,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7881232783882253209, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 5678767026918892378, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1528383173}
     m_AddedComponents: []
@@ -1689,7 +1696,7 @@ Transform:
   m_GameObject: {fileID: 1357503426}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.10476446, y: 0.03, z: 2.91}
+  m_LocalPosition: {x: 0.10476446, y: 0.44, z: 2.91}
   m_LocalScale: {x: 12.596, y: 0.78725, z: 9.363957}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2190,7 +2197,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1665052640}
-  m_Father: {fileID: 1675077640}
+  m_Father: {fileID: 150293961}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1552509455 stripped
 GameObject:
@@ -2458,11 +2465,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!4 &1675077640 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7881232783882253209, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
-  m_PrefabInstance: {fileID: 1003940836}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1688964019
 GameObject:
   m_ObjectHideFlags: 0
@@ -3197,7 +3199,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

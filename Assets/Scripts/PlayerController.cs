@@ -7,14 +7,16 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-
     LevelManager lm;
+    AfterLaunchAbility ala;
 
     Image arrowVisual;
     RectTransform arrowScale;
 
     GameObject player;
     Rigidbody rb;
+
+    public float boardBounds;
 
     public float force = 20f;
     float forceRate = 10f;
@@ -39,16 +41,23 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         movementKeys = InputSystem.actions.FindAction("Move");
-        jumpKey = InputSystem.actions.FindAction("Jump");
+        jumpKey = InputSystem.actions.FindAction("Jump");            
 
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        lm = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
+        
+        arrowScale = GameObject.Find("Arrow").GetComponent<RectTransform>();
+        arrowVisual = GameObject.Find("Arrow").GetComponent<Image>();
+    }
+
     void Update()
     {
         if (playing)
         {
-
-
             if (inPrep)
             {
                 AimMovement();
@@ -68,9 +77,6 @@ public class PlayerController : MonoBehaviour
                     // Scores
                     lm.ScoreRound();
 
-                    // Destroy All Pieces
-                    //lm.DestroyPiece();
-
                     // Freeze for endScreen
                     playing = false;
                 }
@@ -85,42 +91,37 @@ public class PlayerController : MonoBehaviour
 
     void AimMovement()
     {
-        //Turn on Arrow UI
+        // Turn on Arrow UI
         arrowVisual.enabled = true;
 
-        //Visualization for model
+        // Angle for Model & Arrow
         angle = angle + (angleRate * Time.deltaTime);
-        // Angle Bounds
+        // Bound for that Angle
         if (angle <= 125f || angle >= 235f)
         {
             angleRate = -angleRate;
         }
-        // Rotate Model
+        // Rotate Model and Arrow
         rb.transform.rotation = Quaternion.Euler(-90f, angle, 0f);
         arrowScale.rotation = Quaternion.Euler(-90f, 0f, angle);
 
         //Adjust launch Angle
         launchAngle = launchAngle + (directionRate * Time.deltaTime);
-        // Angle Bounds
+        // Launch Angle Bounds
         if (launchAngle <= .6f || launchAngle >= 2.57f)
         {
             directionRate = -directionRate;
         }
-        //Angle for launch set to Vector3
+        // Launch Angle set to Vector3
         angleApplied = new Vector3(Mathf.Cos(launchAngle), 0, Mathf.Sin(launchAngle));
-
+        // Draw Launch Angle
         Debug.DrawRay(rb.transform.position, angleApplied, Color.green);
-
-
-
-
 
         // Take Input
         //(old input system) float horizontal = Input.GetAxis("Horizontal");
-
         float horizontal = movementKeys.ReadValue<Vector2>().x;
 
-        // Set Bounds
+        // Set Input Bounds
         if (transform.position.x <= -6.5f || rb.transform.position.x <= -6.5f)
         {
             transform.position = new Vector3(-6.5f, transform.position.y, transform.position.z);
@@ -136,7 +137,7 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.right * horizontal * 3 * Time.deltaTime);
         rb.transform.position = new Vector3(transform.position.x, 1.056f, -10.26124f);
 
-        // When space is held, charge force amount
+        // When Space is Held, Charge Force Amount
         if (jumpKey.IsPressed())
         {
             // Stop Rotation
@@ -152,6 +153,7 @@ public class PlayerController : MonoBehaviour
                 forceRate = -forceRate;
             }
 
+            // Arrow Scales with Force
             arrowScale.sizeDelta = new Vector2(2.8f, 1f + (force / 10));
             Debug.DrawRay(rb.transform.position, angleApplied * (force / 10), Color.blue);
         }
@@ -163,8 +165,6 @@ public class PlayerController : MonoBehaviour
         // Start Turn
         turnStarted = true;
         inPrep = true;
-
-        // Enable UI
 
         // Spawn Puck
         SpawnPuck(turn);
@@ -178,6 +178,12 @@ public class PlayerController : MonoBehaviour
 
             player = Instantiate(lm.prefabPlayerPuck[num], new Vector3(transform.position.x, transform.position.y + .75f, transform.position.z), Quaternion.Euler(new Vector3(-90f, 180f, 0f)));
             rb = player.GetComponent<Rigidbody>();
+            ala = player.GetComponent<AfterLaunchAbility>();
+
+            if (ala != null)
+            {
+                Debug.Log("There's an ability here");
+            }
 
             isInstant = true;
         }
@@ -198,24 +204,24 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-
             // Detect when puck has stopped
             if (rb.linearVelocity.magnitude <= 0.01 && lm.VelocityZero())
             {
+                StartCoroutine(LateAbility());
                 ChangeTurn();
                 Debug.Log("Is Not Moving");
             }
+
+            // All During Launch Abilities Should be Here
         }
 
     }
 
     void Launch()
     {
-        // Need to add angle
-
         //Apply Force
         Debug.Log("Launched");
-        player.GetComponent<Rigidbody>().AddForce(angleApplied * force, ForceMode.Impulse);
+        rb.AddForce(angleApplied * force, ForceMode.Impulse);
         StartCoroutine(DelayCheck());
 
     }
@@ -241,16 +247,25 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DelayCheck()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         isLaunched = true;
         Debug.Log("Now checking for stop");
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    IEnumerator LateAbility()
     {
-        lm = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
+        Debug.Log("Check for Ability");
 
-        arrowScale = GameObject.Find("Arrow").GetComponent<RectTransform>();
-        arrowVisual = GameObject.Find("Arrow").GetComponent<Image>();
+        if (ala != null && ala.ability != null)
+        {
+            Debug.Log("Activate Ability");
+            ala.UseAbility();
+
+            yield return new WaitForSeconds(5f);
+        }
+        else
+        {
+            yield return null;
+        }
     }
 }
