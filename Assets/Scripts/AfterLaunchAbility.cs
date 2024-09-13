@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class AfterLaunchAbility : MonoBehaviour
@@ -15,7 +16,7 @@ public class AfterLaunchAbility : MonoBehaviour
     public string ability;
     public float range, power;
 
-    Collider[] targetObjects;
+    GameObject[] targetObjects;
 
 
     private void Awake()
@@ -44,7 +45,7 @@ public class AfterLaunchAbility : MonoBehaviour
 
     public void GetObjects(GameObject[] targets)
     {
-        targetObjects = new Collider[targets.Length];
+        targetObjects = new GameObject[targets.Length];
         int i = 0;
         float distance = 0;
 
@@ -52,26 +53,33 @@ public class AfterLaunchAbility : MonoBehaviour
         {
             distance = Mathf.Abs(Vector3.Distance(transform.position, puck.transform.position));
 
-            if (distance <= range && distance >= 0.1)
+            if (distance <= range && distance > 0)
             {
-                targetObjects[i] = puck.GetComponent<Collider>();
+                targetObjects[i] = puck;
                 i++;
             }
         }
-        Debug.Log(targetObjects.Length + " Objects in array.");
+        Debug.Log(i + " Objects in array.");
     }
 
     void Pull()
     {
         if (targetObjects != null && targetObjects.Length > 0)
         {
-            foreach (Collider col in targetObjects)
+            foreach (GameObject gm in targetObjects)
             {
-                if (col.GetComponent<Rigidbody>())
+                if (gm.GetComponent<Rigidbody>())
                 {
-                    Debug.Log("Got their RB");
+                    Rigidbody rb = gm.GetComponent<Rigidbody>();
+                    Debug.Log("Got their Transform");
 
-                    col.GetComponent<Rigidbody>().linearVelocity = (transform.position - col.transform.position) * power * Time.deltaTime;
+                    // Make them move towards target for 2 second
+                    rb.AddForce(transform.forward * 10, ForceMode.Force);
+                    Debug.Log("Pulling");
+                }
+                else
+                {
+                    return;
                 }
             }
         }
@@ -80,5 +88,11 @@ public class AfterLaunchAbility : MonoBehaviour
     void Push()
     {
 
+    }
+
+    IEnumerator StopAbility()
+    {
+        Debug.Log("Waiting for Ability");
+        yield return new WaitForSeconds(2f);        
     }
 }

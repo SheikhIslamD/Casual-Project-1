@@ -204,11 +204,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            
             // Detect when puck has stopped
             if (rb.linearVelocity.magnitude <= 0.01 && lm.VelocityZero())
             {
                 StartCoroutine(LateAbility());
-                ChangeTurn();
                 Debug.Log("Is Not Moving");
             }
 
@@ -223,7 +223,6 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Launched");
         rb.AddForce(angleApplied * force, ForceMode.Impulse);
         StartCoroutine(DelayCheck());
-
     }
 
     void ChangeTurn()
@@ -261,11 +260,14 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Activate Ability");
             ala.UseAbility();
 
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(2f);
         }
         else
         {
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
+
+
+        ChangeTurn();
     }
 }

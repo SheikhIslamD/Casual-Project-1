@@ -20,7 +20,6 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        turn = 0;
         turnMax = prefabPlayerPuck.Length;
 
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -75,7 +74,6 @@ public class LevelManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Calls on Scene Loaded");
-
         turn = 0;
         PlayerController.playing = true;
 
@@ -90,17 +88,5 @@ public class LevelManager : MonoBehaviour
 
         winText = GameObject.Find("Win Text").GetComponent<TextMeshProUGUI>();
         loseText = GameObject.Find("Lose Text").GetComponent<TextMeshProUGUI>();
-    }
-
-    public void DestroyPiece()
-    {
-        foreach (GameObject dog in prefabEnemyPuck)
-        {
-            Destroy(dog);
-        }
-        foreach (GameObject cat in prefabPlayerPuck)
-        {
-            Destroy(cat);
-        }
     }
 }
