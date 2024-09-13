@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         turnMax = prefabPlayerPuck.Length;
+        Debug.Log(turnMax + " Total turns");
 
         SceneManager.sceneLoaded += OnSceneLoaded;
     }

@@ -180,11 +180,6 @@ public class PlayerController : MonoBehaviour
             rb = player.GetComponent<Rigidbody>();
             ala = player.GetComponent<AfterLaunchAbility>();
 
-            if (ala != null)
-            {
-                Debug.Log("There's an ability here");
-            }
-
             isInstant = true;
         }
     }
@@ -208,8 +203,8 @@ public class PlayerController : MonoBehaviour
             // Detect when puck has stopped
             if (rb.linearVelocity.magnitude <= 0.01 && lm.VelocityZero())
             {
-                StartCoroutine(LateAbility());
                 Debug.Log("Is Not Moving");
+                StartCoroutine(Ability());                
             }
 
             // All During Launch Abilities Should be Here
@@ -251,7 +246,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Now checking for stop");
     }
 
-    IEnumerator LateAbility()
+    IEnumerator Ability()
     {
         Debug.Log("Check for Ability");
 
@@ -260,13 +255,8 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Activate Ability");
             ala.UseAbility();
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
         }
-        else
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
 
         ChangeTurn();
     }

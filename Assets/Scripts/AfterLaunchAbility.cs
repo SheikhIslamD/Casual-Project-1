@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AfterLaunchAbility : MonoBehaviour
@@ -16,7 +18,8 @@ public class AfterLaunchAbility : MonoBehaviour
     public string ability;
     public float range, power;
 
-    GameObject[] targetObjects;
+    GameObject[] possibleObjects;
+    public Transform[] targetObjects;
 
 
     private void Awake()
@@ -32,33 +35,37 @@ public class AfterLaunchAbility : MonoBehaviour
         {
             // Target Friendly
             case "Pull":
-                GetObjects(lm.prefabPlayerPuck);            
+                GetObjects("Player Piece", lm.prefabPlayerPuck.Length);            
                 Pull();
                 break;
             // Target Enemy 
             case "Push":
-                GetObjects(lm.prefabEnemyPuck);
+                GetObjects("Enemy Piece", lm.prefabEnemyPuck.Length);
                 Push();
                 break;
         }
     }
 
-    public void GetObjects(GameObject[] targets)
+    public void GetObjects(string targets, int maxSize)
     {
-        targetObjects = new GameObject[targets.Length];
+        possibleObjects = new GameObject[maxSize];
+        targetObjects = new Transform[maxSize];
         int i = 0;
         float distance = 0;
 
-        foreach (GameObject puck in targets)
+        possibleObjects = GameObject.FindGameObjectsWithTag(targets);
+
+        foreach (GameObject puck in possibleObjects)
         {
             distance = Mathf.Abs(Vector3.Distance(transform.position, puck.transform.position));
 
             if (distance <= range && distance > 0)
             {
-                targetObjects[i] = puck;
+                targetObjects[i] = puck.GetComponent<Transform>();
                 i++;
             }
         }
+        Array.Resize(ref targetObjects, i);
         Debug.Log(i + " Objects in array.");
     }
 
@@ -66,21 +73,13 @@ public class AfterLaunchAbility : MonoBehaviour
     {
         if (targetObjects != null && targetObjects.Length > 0)
         {
-            foreach (GameObject gm in targetObjects)
+            foreach (Transform tf in targetObjects)
             {
-                if (gm.GetComponent<Rigidbody>())
-                {
-                    Rigidbody rb = gm.GetComponent<Rigidbody>();
-                    Debug.Log("Got their Transform");
-
-                    // Make them move towards target for 2 second
-                    rb.AddForce(transform.forward * 10, ForceMode.Force);
-                    Debug.Log("Pulling");
-                }
-                else
-                {
-                    return;
-                }
+                Debug.Log(tf);
+                // Make them move towards target for 1 second
+                tf.position = Vector3.MoveTowards(tf.position, transform.position, power * Time.deltaTime);
+                StartCoroutine(StopAbility());
+                tf.position = tf.position;
             }
         }
     }
@@ -92,7 +91,6 @@ public class AfterLaunchAbility : MonoBehaviour
 
     IEnumerator StopAbility()
     {
-        Debug.Log("Waiting for Ability");
-        yield return new WaitForSeconds(2f);        
+        yield return new WaitForSeconds(.5f);        
     }
 }
