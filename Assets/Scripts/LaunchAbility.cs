@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class LaunchAbility : MonoBehaviour
 {
-    PlayerController pc;
+    Rigidbody rb;
     static bool hasTriggered;
 
     public string ability;
 
     private void Awake()
     {
-        pc = GetComponent<PlayerController>();
+        rb= GetComponent<Rigidbody>();
     }
 
     public void UseLaunchAbility()
@@ -23,7 +23,8 @@ public class LaunchAbility : MonoBehaviour
             {
                 // Target Friendly
                 case "Zoom":
-                    Zoom();
+                    rb.AddForce(Vector3.forward * 20, ForceMode.Impulse);
+                    hasTriggered = true;
                     break;
                 // Target Enemy 
                 case "Divide":
@@ -33,8 +34,8 @@ public class LaunchAbility : MonoBehaviour
         }
     }
 
-    void Zoom()
+    void Divide()
     {
-        PlayerController.Launch();
+        
     }
 }
