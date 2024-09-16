@@ -48,12 +48,13 @@ public class AfterLaunchAbility : MonoBehaviour
 
     public void GetObjects(string targets, int maxSize)
     {
-        int i = 0;
         float distance = 0;
 
+        // Fill a list of GameObjects with pieces of the targeted tag
         targetObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag(targets));
 
-        for (i = 0; i < targetObjects.Count; i++)
+        // Remoe all pieces outside the range of the ability piece
+        for (int i = 0; i < targetObjects.Count; i++)
         {
             distance = Mathf.Abs(Vector3.Distance(transform.position, targetObjects[i].transform.position));
 
@@ -69,15 +70,16 @@ public class AfterLaunchAbility : MonoBehaviour
         // Visual, Make Cat Spin
         GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 4, 0);
 
-
+        // Ensure List is not empty
         if (targetObjects != null && targetObjects.Count > 0)
         {
+            // For each piece in list, pull and spin those pieces
             for (int i = 0; i < targetObjects.Count; i++)
             {
                 Transform tf  = targetObjects[i].transform;
                 Rigidbody rb = targetObjects[i].GetComponent<Rigidbody>();
 
-                // Make them move towards target for 1 second
+                // Make them move towards target
                 rb.angularVelocity = new Vector3(0, 1.5f, 0);
                 tf.position = Vector3.MoveTowards(tf.position, transform.position, power * Time.deltaTime);
             }
@@ -86,6 +88,22 @@ public class AfterLaunchAbility : MonoBehaviour
 
     void Push()
     {
+        // Visual, Make Cat Spin
+        GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -4, 0);
 
+        // Ensure List is not empty
+        if (targetObjects != null && targetObjects.Count > 0)
+        {
+            // For each piece in list, push and spin those pieces
+            for (int i = 0; i < targetObjects.Count; i++)
+            {
+                Transform tf = targetObjects[i].transform;
+                Rigidbody rb = targetObjects[i].GetComponent<Rigidbody>();
+
+                // Make them move away from target
+                rb.angularVelocity = new Vector3(0, -1.5f, 0);
+                tf.position = Vector3.MoveTowards(tf.position, transform.position, -power * Time.deltaTime);
+            }
+        }
     }
 }
