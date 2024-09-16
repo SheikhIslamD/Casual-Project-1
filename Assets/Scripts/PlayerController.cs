@@ -182,7 +182,10 @@ public class PlayerController : MonoBehaviour
             rb = player.GetComponent<Rigidbody>();
             ala = player.GetComponent<AfterLaunchAbility>();
 
-            if (ala != null) hasAbility = true;
+            if (ala != null)
+            {
+                hasAbility = true;
+            }
             else hasAbility = false;
 
             Debug.Log("Ability? " + hasAbility + " Ala? " + ala);
@@ -215,7 +218,7 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("Need to trigger ability? " + hasAbility);
 
-                if(hasAbility)
+                if(hasAbility && !ala.hasTriggered)
                 {
                     Debug.Log("Not moving, triggering additional actions");
                     ala.UseAbility();

@@ -16,7 +16,7 @@ public class AfterLaunchAbility : MonoBehaviour
 
     LevelManager lm;
 
-    static bool usedAbility;
+    public bool hasTriggered;
 
     public string ability;
     public float range, power;
@@ -33,19 +33,23 @@ public class AfterLaunchAbility : MonoBehaviour
     {
         Debug.Log("Running Ability Now");
 
-        switch (ability)
+        if (!hasTriggered)
         {
-            // Target Friendly
-            case "Pull":
-                GetObjects("Player Piece", lm.prefabPlayerPuck.Length);            
-                Pull();
-                break;
-            // Target Enemy 
-            case "Push":
-                GetObjects("Enemy Piece", lm.prefabEnemyPuck.Length);
-                Push();
-                break;
+            switch (ability)
+            {
+                // Target Friendly
+                case "Pull":
+                    GetObjects("Player Piece", lm.prefabPlayerPuck.Length);
+                    Pull();
+                    break;
+                // Target Enemy 
+                case "Push":
+                    GetObjects("Enemy Piece", lm.prefabEnemyPuck.Length);
+                    Push();
+                    break;
+            }
         }
+        
     }
 
     public void GetObjects(string targets, int maxSize)
@@ -117,10 +121,6 @@ public class AfterLaunchAbility : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        PlayerController.hasAbility = false;
-
-        yield return new WaitForSeconds(0.5f);
-
-        PlayerController.hasAbility = true;
+        hasTriggered = true;
     }
 }
