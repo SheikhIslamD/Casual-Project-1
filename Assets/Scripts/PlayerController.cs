@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 {
     LevelManager lm;
     AfterLaunchAbility ala;
+    LaunchAbility la;
 
     Image arrowVisual;
     RectTransform arrowScale;
@@ -34,8 +35,10 @@ public class PlayerController : MonoBehaviour
     static bool turnStarted;
     static bool inPrep;
     static bool isLaunched;
-    public static bool hasAbility;
     static bool isInstant;
+
+    public static bool hasLaunchAbility = false;
+    public static bool hasAfterAbility = false;
 
     InputAction movementKeys;
     InputAction jumpKey;
@@ -181,14 +184,16 @@ public class PlayerController : MonoBehaviour
             player = Instantiate(lm.prefabPlayerPuck[num], new Vector3(transform.position.x, transform.position.y + .75f, transform.position.z), Quaternion.Euler(new Vector3(-90f, 180f, 0f)));
             rb = player.GetComponent<Rigidbody>();
             ala = player.GetComponent<AfterLaunchAbility>();
+            la = player.GetComponent<LaunchAbility>();
 
             if (ala != null)
             {
-                hasAbility = true;
+                hasAfterAbility = true;
             }
-            else hasAbility = false;
-
-            Debug.Log("Ability? " + hasAbility + " Ala? " + ala);
+            else if (la != null)
+            {
+                hasLaunchAbility = true;
+            }
 
             isInstant = true;
         }
@@ -202,7 +207,6 @@ public class PlayerController : MonoBehaviour
             // When space is released, launch
             if (jumpKey.WasReleasedThisFrame())
             {
-                Debug.Log("Need to trigger ability? " + hasAbility);
                 arrowVisual.enabled = false;
                 inPrep = false;
                 Launch();
@@ -210,21 +214,25 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            //During launch ability
-
+            // During launch ability
+            if (jumpKey.WasReleasedThisFrame() && hasLaunchAbility) 
+            {
+                Launch();
+            }
 
             // Detect when puck has stopped
             if (rb.linearVelocity.magnitude <= 0.01 && lm.VelocityZero())
             {
-                Debug.Log("Need to trigger ability? " + hasAbility);
-
-                if(hasAbility && !ala.hasTriggered)
+                // Check for ALA ability
+                if(hasAfterAbility && !ala.hasTriggered)
                 {
+                    // Activate ALA ability
                     Debug.Log("Not moving, triggering additional actions");
                     ala.UseAbility();
                 }
                 else
                 {
+                    // No ALA ability, change turn
                     Debug.Log("Not moving and no additional actions left");
                     ChangeTurn();
                 }
@@ -233,7 +241,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void Launch()
+    public void Launch()
     {
         //Apply Force
         Debug.Log("Launched");

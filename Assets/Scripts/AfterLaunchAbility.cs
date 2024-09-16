@@ -6,22 +6,15 @@ using UnityEngine;
 
 public class AfterLaunchAbility : MonoBehaviour
 {
-    /*  
-        Use Trigger collider(?) to check for pucks in set range
-        Pull Friendly pucks and push enemy pucks respectively
-        Do this through apply force and set origin to puck transform center
-        Puck using ability should freeze before ability
-        unfreeze after effect and turn change
-    */
-
     LevelManager lm;
+
+    public List<GameObject> targetObjects;
 
     public bool hasTriggered;
 
     public string ability;
     public float range, power;
 
-    public List<GameObject> targetObjects;
 
 
     private void Awake()
@@ -109,7 +102,7 @@ public class AfterLaunchAbility : MonoBehaviour
                 Rigidbody rb = targetObjects[i].GetComponent<Rigidbody>();
 
                 // Make them move away from target
-                rb.angularVelocity = new Vector3(0, -1.5f, 0);
+                rb.angularVelocity = new Vector3(0, -2f, 0);
                 tf.position = Vector3.MoveTowards(tf.position, transform.position, -power * Time.deltaTime);
             }
         }
