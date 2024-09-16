@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -18,8 +19,7 @@ public class AfterLaunchAbility : MonoBehaviour
     public string ability;
     public float range, power;
 
-    GameObject[] possibleObjects;
-    public Transform[] targetObjects;
+    public List<GameObject> targetObjects;
 
 
     private void Awake()
@@ -48,38 +48,38 @@ public class AfterLaunchAbility : MonoBehaviour
 
     public void GetObjects(string targets, int maxSize)
     {
-        possibleObjects = new GameObject[maxSize];
-        targetObjects = new Transform[maxSize];
         int i = 0;
         float distance = 0;
 
-        possibleObjects = GameObject.FindGameObjectsWithTag(targets);
+        targetObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag(targets));
 
-        foreach (GameObject puck in possibleObjects)
+        for (i = 0; i < targetObjects.Count; i++)
         {
-            distance = Mathf.Abs(Vector3.Distance(transform.position, puck.transform.position));
+            distance = Mathf.Abs(Vector3.Distance(transform.position, targetObjects[i].transform.position));
 
-            if (distance <= range && distance > 0)
+            if (distance > range || distance == 0)
             {
-                targetObjects[i] = puck.GetComponent<Transform>();
-                i++;
+                targetObjects.Remove(targetObjects[i]);
             }
         }
-        Array.Resize(ref targetObjects, i);
-        Debug.Log(i + " Objects in array.");
     }
 
     void Pull()
     {
-        if (targetObjects != null && targetObjects.Length > 0)
+        // Visual, Make Cat Spin
+        GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 4, 0);
+
+
+        if (targetObjects != null && targetObjects.Count > 0)
         {
-            foreach (Transform tf in targetObjects)
+            for (int i = 0; i < targetObjects.Count; i++)
             {
-                Debug.Log(tf);
+                Transform tf  = targetObjects[i].transform;
+                Rigidbody rb = targetObjects[i].GetComponent<Rigidbody>();
+
                 // Make them move towards target for 1 second
+                rb.angularVelocity = new Vector3(0, 1.5f, 0);
                 tf.position = Vector3.MoveTowards(tf.position, transform.position, power * Time.deltaTime);
-                StartCoroutine(StopAbility());
-                tf.position = tf.position;
             }
         }
     }
@@ -87,10 +87,5 @@ public class AfterLaunchAbility : MonoBehaviour
     void Push()
     {
 
-    }
-
-    IEnumerator StopAbility()
-    {
-        yield return new WaitForSeconds(.5f);        
     }
 }

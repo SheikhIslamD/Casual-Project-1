@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     static bool turnStarted;
     static bool inPrep;
     static bool isLaunched;
+    static bool abilityUsed;
     static bool isInstant;
 
     InputAction movementKeys;
@@ -180,6 +181,9 @@ public class PlayerController : MonoBehaviour
             rb = player.GetComponent<Rigidbody>();
             ala = player.GetComponent<AfterLaunchAbility>();
 
+            if (ala != null) abilityUsed = false;
+            else abilityUsed = true;
+
             isInstant = true;
         }
     }
@@ -197,17 +201,28 @@ public class PlayerController : MonoBehaviour
                 Launch();
             }
         }
-        else
+        else if (isLaunched && !abilityUsed)
         {
-            
+
+            // All During Launch Abilities Should be Here
+
+
             // Detect when puck has stopped
             if (rb.linearVelocity.magnitude <= 0.01 && lm.VelocityZero())
             {
-                Debug.Log("Is Not Moving");
+                Debug.Log("Not Moving, Triggering Additional Actions");
                 StartCoroutine(Ability());                
             }
 
-            // All During Launch Abilities Should be Here
+        }
+        else
+        {
+            // Detect when puck has stopped
+            if (rb.linearVelocity.magnitude <= 0.01 && lm.VelocityZero())
+            {
+                Debug.Log("Not Moving and No Additional Actions Left");
+                ChangeTurn();
+            }
         }
 
     }
@@ -248,16 +263,12 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Ability()
     {
-        Debug.Log("Check for Ability");
+        // Activate After Launch Ability
+        Debug.Log("Activate Ability");
+        ala.UseAbility();
 
-        if (ala != null && ala.ability != null)
-        {
-            Debug.Log("Activate Ability");
-            ala.UseAbility();
+        yield return new WaitForSeconds(1f);
 
-            yield return new WaitForSeconds(1f);
-        }
-
-        ChangeTurn();
+        abilityUsed = true;
     }
 }
