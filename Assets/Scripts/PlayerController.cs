@@ -4,6 +4,7 @@ using UnityEngine.UI;
 //using static UnityEditor.Searcher.SearcherWindow.Alignment;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class PlayerController : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class PlayerController : MonoBehaviour
     static bool turnStarted;
     static bool inPrep;
     static bool isLaunched;
-    static bool abilityUsed;
+    bool abilityUsed;
     static bool isInstant;
 
     InputAction movementKeys;
@@ -184,6 +185,8 @@ public class PlayerController : MonoBehaviour
             if (ala != null) abilityUsed = false;
             else abilityUsed = true;
 
+            Debug.Log("Ability? " + !abilityUsed + " Ala? " + ala);
+
             isInstant = true;
         }
     }
@@ -201,27 +204,23 @@ public class PlayerController : MonoBehaviour
                 Launch();
             }
         }
-        else if (isLaunched && !abilityUsed)
-        {
-
-            // All During Launch Abilities Should be Here
-
-
-            // Detect when puck has stopped
-            if (rb.linearVelocity.magnitude <= 0.01 && lm.VelocityZero())
-            {
-                Debug.Log("Not Moving, Triggering Additional Actions");
-                StartCoroutine(Ability());                
-            }
-
-        }
         else
         {
             // Detect when puck has stopped
             if (rb.linearVelocity.magnitude <= 0.01 && lm.VelocityZero())
             {
-                Debug.Log("Not Moving and No Additional Actions Left");
-                ChangeTurn();
+                Debug.Log("Need to trigger ability? " + !abilityUsed);
+
+                if(!abilityUsed)
+                {
+                    Debug.Log("Not moving, triggering additional actions");
+                    StartCoroutine(Ability());
+                }
+                else
+                {
+                    Debug.Log("Not moving and no additional actions left");
+                    ChangeTurn();
+                }
             }
         }
 
