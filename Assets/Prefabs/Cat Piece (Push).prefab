@@ -158,6 +158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ability: Push
-  range: 5
-  power: 10
+  range: 10
+  power: 8
   targetObjects: []

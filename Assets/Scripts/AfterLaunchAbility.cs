@@ -16,6 +16,8 @@ public class AfterLaunchAbility : MonoBehaviour
 
     LevelManager lm;
 
+    static bool usedAbility;
+
     public string ability;
     public float range, power;
 
@@ -84,6 +86,8 @@ public class AfterLaunchAbility : MonoBehaviour
                 tf.position = Vector3.MoveTowards(tf.position, transform.position, power * Time.deltaTime);
             }
         }
+
+        StartCoroutine(RunAbility());
     }
 
     void Push()
@@ -105,5 +109,18 @@ public class AfterLaunchAbility : MonoBehaviour
                 tf.position = Vector3.MoveTowards(tf.position, transform.position, -power * Time.deltaTime);
             }
         }
+
+        StartCoroutine(RunAbility());
+    }
+
+    IEnumerator RunAbility()
+    {
+        yield return new WaitForSeconds(1f);
+
+        PlayerController.hasAbility = false;
+
+        yield return new WaitForSeconds(0.5f);
+
+        PlayerController.hasAbility = true;
     }
 }

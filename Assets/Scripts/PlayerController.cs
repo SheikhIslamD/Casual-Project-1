@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     static bool turnStarted;
     static bool inPrep;
     static bool isLaunched;
-    bool abilityUsed;
+    public static bool hasAbility;
     static bool isInstant;
 
     InputAction movementKeys;
@@ -182,10 +182,10 @@ public class PlayerController : MonoBehaviour
             rb = player.GetComponent<Rigidbody>();
             ala = player.GetComponent<AfterLaunchAbility>();
 
-            if (ala != null) abilityUsed = false;
-            else abilityUsed = true;
+            if (ala != null) hasAbility = true;
+            else hasAbility = false;
 
-            Debug.Log("Ability? " + !abilityUsed + " Ala? " + ala);
+            Debug.Log("Ability? " + hasAbility + " Ala? " + ala);
 
             isInstant = true;
         }
@@ -199,6 +199,7 @@ public class PlayerController : MonoBehaviour
             // When space is released, launch
             if (jumpKey.WasReleasedThisFrame())
             {
+                Debug.Log("Need to trigger ability? " + hasAbility);
                 arrowVisual.enabled = false;
                 inPrep = false;
                 Launch();
@@ -206,15 +207,18 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            //During launch ability
+
+
             // Detect when puck has stopped
             if (rb.linearVelocity.magnitude <= 0.01 && lm.VelocityZero())
             {
-                Debug.Log("Need to trigger ability? " + !abilityUsed);
+                Debug.Log("Need to trigger ability? " + hasAbility);
 
-                if(!abilityUsed)
+                if(hasAbility)
                 {
                     Debug.Log("Not moving, triggering additional actions");
-                    StartCoroutine(Ability());
+                    ala.UseAbility();
                 }
                 else
                 {
@@ -258,16 +262,5 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         isLaunched = true;
         Debug.Log("Now checking for stop");
-    }
-
-    IEnumerator Ability()
-    {
-        // Activate After Launch Ability
-        Debug.Log("Activate Ability");
-        ala.UseAbility();
-
-        yield return new WaitForSeconds(1f);
-
-        abilityUsed = true;
     }
 }
