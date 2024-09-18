@@ -13,7 +13,6 @@ public class LaunchAbility : MonoBehaviour
     Rigidbody rb;
 
     public GameObject holocat;
-    bool checkingClone;
 
     public void UseLaunchAbility(Vector3 currentAngle, float currentForce)
     {
@@ -37,13 +36,6 @@ public class LaunchAbility : MonoBehaviour
             }
         }
     }
-    private void FixedUpdate()
-    {
-        if (checkingClone)
-        {
-
-        }
-    }
 
     void Zoom()
     {
@@ -55,19 +47,13 @@ public class LaunchAbility : MonoBehaviour
     void Clone()
     {
         // Thinking we do like "Holograms," not worth points and disappear when velocity = 0
-        GameObject clone1 = Instantiate(holocat, new Vector3(transform.position.x + 2, transform.position.y, transform.position.z), Quaternion.Euler(new Vector3(-90f, 180f, transform.rotation.z + 30)));
-        GameObject clone2 = Instantiate(holocat, new Vector3(transform.position.x - 2, transform.position.y, transform.position.z), Quaternion.Euler(new Vector3(-90f, 180f, transform.rotation.z - 30)));
+        GameObject clone1 = Instantiate(holocat, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(new Vector3(-90f, 180f, transform.rotation.z + 30)));
+        GameObject clone2 = Instantiate(holocat, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(new Vector3(-90f, 180f, transform.rotation.z - 30)));
 
-        clone1.GetComponent<Rigidbody>().AddForce(new Vector3(launchAngle.x - Mathf.Cos(60), 0, launchAngle.z - Mathf.Sin(60)) * launchForce, ForceMode.Impulse);
-        clone2.GetComponent<Rigidbody>().AddForce(new Vector3(launchAngle.x - Mathf.Cos(30), 0, launchAngle.z - Mathf.Sin(30)) * launchForce, ForceMode.Impulse);
+        clone1.GetComponent<Rigidbody>().AddForce(new Vector3(launchAngle.x + Mathf.Cos(0.3f), 0, launchAngle.z + Mathf.Sin(0.3f)) * launchForce, ForceMode.Impulse);
+        clone2.GetComponent<Rigidbody>().AddForce(new Vector3(launchAngle.x - Mathf.Cos(0.3f), 0, launchAngle.z - Mathf.Sin(0.3f)) * launchForce, ForceMode.Impulse);
 
-        checkingClone = true;
         hasTriggered = true;
     }
 
-    IEnumerator DestroyClones()
-    {
-        yield return new WaitForSeconds(1.5f);
-
-    }
 }

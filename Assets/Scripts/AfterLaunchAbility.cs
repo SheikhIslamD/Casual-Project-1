@@ -102,8 +102,8 @@ public class AfterLaunchAbility : MonoBehaviour
                 Rigidbody rb = targetObjects[i].GetComponent<Rigidbody>();
 
                 // Make them move away from target
-                rb.angularVelocity = new Vector3(0, -2f, 0);
-                tf.position = Vector3.MoveTowards(tf.position, transform.position, -power * Time.deltaTime);
+                rb.angularVelocity = new Vector3(0, 2f, 0);
+                tf.position = Vector3.MoveTowards(tf.position, transform.position, -power * 2f * Time.deltaTime);
             }
         }
 
