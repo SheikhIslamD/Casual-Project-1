@@ -248,7 +248,8 @@ MonoBehaviour:
   star2Diff: 1
   star3Diff: 2
   prefabPlayerPuck:
-  - {fileID: 58344071952303487, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
+  - {fileID: 5068023248480719150, guid: c1dec9939574edf42aeea1b7ff1f26df, type: 3}
+  - {fileID: 3929998242236406031, guid: f64deda957efaaa4999aa4099b1dcef9, type: 3}
   - {fileID: 5068023248480719150, guid: c1dec9939574edf42aeea1b7ff1f26df, type: 3}
   - {fileID: 6122205378930540760, guid: 6da65ca87de201d46a9b650bd32ecfcc, type: 3}
   prefabEnemyPuck:
@@ -821,7 +822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2705750377768773244, guid: 8e53e4e277606c84da6b54fc032b19dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.81
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 2705750377768773244, guid: 8e53e4e277606c84da6b54fc032b19dc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -858,6 +859,10 @@ PrefabInstance:
     - target: {fileID: 3370681600612842694, guid: 8e53e4e277606c84da6b54fc032b19dc, type: 3}
       propertyPath: m_Name
       value: Dog Enemy (Basic) (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6973713410517254208, guid: 8e53e4e277606c84da6b54fc032b19dc, type: 3}
+      propertyPath: m_Constraints
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3280,7 +3285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2705750377768773244, guid: 8e53e4e277606c84da6b54fc032b19dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.81
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 2705750377768773244, guid: 8e53e4e277606c84da6b54fc032b19dc, type: 3}
       propertyPath: m_LocalPosition.z
