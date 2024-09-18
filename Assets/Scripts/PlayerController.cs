@@ -217,7 +217,7 @@ public class PlayerController : MonoBehaviour
             // During launch ability
             if (jumpKey.WasReleasedThisFrame() && hasLaunchAbility) 
             {
-                Launch();
+                la.UseLaunchAbility(angleApplied, force);
             }
 
             // Detect when puck has stopped
