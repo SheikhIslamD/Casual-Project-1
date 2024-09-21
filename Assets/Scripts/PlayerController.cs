@@ -210,6 +210,7 @@ public class PlayerController : MonoBehaviour
                 arrowVisual.enabled = false;
                 inPrep = false;
                 Launch();
+                SoundEffects.instance.PlaySoundEffect(SoundEffects.instance.slip, transform, 1, null);
             }
         }
         else
@@ -266,6 +267,8 @@ public class PlayerController : MonoBehaviour
         lm.turn += 1;
         isInstant = false;
         turnStarted = false;
+        hasAfterAbility = false;
+        hasLaunchAbility = false;
     }
 
     IEnumerator DelayCheck()
