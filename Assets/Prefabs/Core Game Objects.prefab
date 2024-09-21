@@ -259,11 +259,12 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3221748974611899745}
+  - {fileID: 3198001542685007527}
   - {fileID: 3672260903991897681}
-  - {fileID: 725645419638025957}
   - {fileID: 5020397074755467366}
   - {fileID: 8650457086511252289}
   - {fileID: 2092214434926277247}
+  - {fileID: 725645419638025957}
   - {fileID: 5480006731624827098}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -718,6 +719,58 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &4098956407363465519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3198001542685007527}
+  - component: {fileID: 1927849420078947787}
+  m_Layer: 0
+  m_Name: SoundEffects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3198001542685007527
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4098956407363465519}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.1, y: -0.030000001, z: 6.17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5678767026918892378}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1927849420078947787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4098956407363465519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961aded89bb8be84393be9addf109956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slip: {fileID: 8300000, guid: 34dc58460654a32448b5d1aa4af484fe, type: 3}
+  bonk: {fileID: 8300000, guid: b9f52337343442941abf31ef00f70db6, type: 3}
+  boom: {fileID: 8300000, guid: 14000c37535bcff4ba6d4f139b153079, type: 3}
+  meows:
+  - {fileID: 8300000, guid: 92903dda1d513a1448f7a344ed02dc18, type: 3}
+  - {fileID: 8300000, guid: fc8553342cb63fa45ad7cc2b95163101, type: 3}
+  - {fileID: 8300000, guid: d911c2c439f20b4438f71b1dd2341705, type: 3}
+  soundObject: {fileID: 1338440054218829673, guid: d92e9a660e9b7ac47ba5357890cf07a9, type: 3}
 --- !u!1 &5379572028020081625
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,9 +1242,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4115824233721057275}
   - {fileID: 3756819881532545509}
   - {fileID: 1340532860683733647}
-  - {fileID: 4115824233721057275}
   - {fileID: 2957033895902710853}
   - {fileID: 5503382189246875386}
   m_Father: {fileID: 5678767026918892378}
