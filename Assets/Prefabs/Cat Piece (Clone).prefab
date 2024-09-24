@@ -67,7 +67,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 17cdd0fb193a45b438b5c48915e41071, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 715f61d521f6c504bbbbf07a6cdce817, type: 2}
+      objectReference: {fileID: 2100000, guid: 817f1e11ae611b54b943567637defbe6, type: 2}
     - target: {fileID: 919132149155446097, guid: 17cdd0fb193a45b438b5c48915e41071, type: 3}
       propertyPath: m_Name
       value: Cat Piece (Clone)
@@ -161,6 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865e21d2889ab184f9c33db24ff265d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ability: Clone
-  copy: {fileID: 0}
+  ability: Multiply
+  copy: {fileID: 1336685357885521215, guid: 3998967e0a2846140a64bf55c1f391d0, type: 3}
   clear: {fileID: 0}
