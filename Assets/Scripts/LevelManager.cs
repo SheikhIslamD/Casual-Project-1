@@ -10,9 +10,9 @@ public class LevelManager : MonoBehaviour
     public int turnMax;
 
     public int star2Diff, star3Diff;
-    Image star1, star2, star3;
-    Color starColor = new Color32(195, 167, 18, 255);
-    TextMeshProUGUI winText, loseText;
+    Image medal;
+    public Sprite gold, silver, bronze, black;
+    public TextMeshProUGUI winText, loseText, scoreText;
     Canvas inGameCanvas, endCanvas;
 
     public GameObject[] prefabPlayerPuck;
@@ -31,7 +31,10 @@ public class LevelManager : MonoBehaviour
         //For positive feedback loop maybe use a "star" system. i.e. 1 star for win by 1, 2 starts for win by 2, and 3 for 3+
         inGameCanvas.enabled = false;
         endCanvas.enabled = true;
-        
+
+        // Show final score
+        scoreText.text = "Score: " + (ScoreTracker.playerScore - ScoreTracker.enemyScore);
+
         // If player score meets score requirements, allocate stars
         if (ScoreTracker.playerScore >= ScoreTracker.enemyScore)
         {
@@ -43,19 +46,19 @@ public class LevelManager : MonoBehaviour
                 if (ScoreTracker.playerScore - ScoreTracker.enemyScore >= star3Diff)
                 {
                     // UI 3 star
-                    star3.color = starColor;
+                    medal.sprite = gold;
                 }
                 // UI 2 star
-                star2.color = starColor;
+                medal.sprite = silver;
             }
             // UI 1 star
-            star1.color = starColor;
+            medal.sprite = bronze;
             return;
         }
 
         // UI lose Text
-        loseText.enabled = false;
-        // Or outright just restart level?
+        loseText.enabled = true;
+        medal.sprite = black;
         return;
     }
 
@@ -83,11 +86,9 @@ public class LevelManager : MonoBehaviour
 
         inGameCanvas.enabled = true;
 
-        star1 = GameObject.Find("Star 1").GetComponent<Image>();
-        star2 = GameObject.Find("Star 2").GetComponent<Image>();
-        star3 = GameObject.Find("Star 3").GetComponent<Image>();
-
-        winText = GameObject.Find("Win Text").GetComponent<TextMeshProUGUI>();
-        loseText = GameObject.Find("Lose Text").GetComponent<TextMeshProUGUI>();
+        medal = GameObject.Find("Medal").GetComponent<Image>();
+        winText = GameObject.Find("WinText").GetComponent<TextMeshProUGUI>();
+        loseText = GameObject.Find("LoseText").GetComponent<TextMeshProUGUI>();
+        scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
     }
 }
