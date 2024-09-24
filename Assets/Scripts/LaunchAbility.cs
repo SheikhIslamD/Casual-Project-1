@@ -10,9 +10,10 @@ public class LaunchAbility : MonoBehaviour
     float launchForce;
     Vector3 launchAngle;
 
-    Rigidbody rb;
+    public GameObject copy;
 
-    public GameObject holocat;
+    public Material clear;
+    Material mat;
 
     public void UseLaunchAbility(Vector3 currentAngle, float currentForce)
     {
@@ -25,13 +26,17 @@ public class LaunchAbility : MonoBehaviour
         {
             switch (ability)
             {
-                // Target Friendly
+                // Double Dash
                 case "Zoom":
                     Zoom();
                     break;
-                // Target Enemy 
-                case "Clone":
-                    Clone();
+                // Spawn temporary clones 
+                case "Multiply":
+                    Multiply();
+                    break;
+                // Become Untouchable
+                case "Vanish":
+                    Vanish();
                     break;
             }
         }
@@ -39,21 +44,39 @@ public class LaunchAbility : MonoBehaviour
 
     void Zoom()
     {
-        rb = GetComponent<Rigidbody>();
+        Rigidbody rb = GetComponent<Rigidbody>();
         rb.AddForce(launchAngle * launchForce, ForceMode.Impulse);
         hasTriggered = true;
     }
 
-    void Clone()
+    void Multiply()
     {
         // Thinking we do like "Holograms," not worth points and disappear when velocity = 0
-        GameObject clone1 = Instantiate(holocat, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(new Vector3(-90f, 180f, transform.rotation.z + 30)));
-        GameObject clone2 = Instantiate(holocat, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(new Vector3(-90f, 180f, transform.rotation.z - 30)));
+        GameObject clone1 = Instantiate(copy, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(new Vector3(-90f, 180f, transform.rotation.z + 30)));
+        GameObject clone2 = Instantiate(copy, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(new Vector3(-90f, 180f, transform.rotation.z - 30)));
 
         clone1.GetComponent<Rigidbody>().AddForce(new Vector3(launchAngle.x + Mathf.Cos(0.3f), 0, launchAngle.z + Mathf.Sin(0.3f)) * launchForce, ForceMode.Impulse);
         clone2.GetComponent<Rigidbody>().AddForce(new Vector3(launchAngle.x - Mathf.Cos(0.3f), 0, launchAngle.z - Mathf.Sin(0.3f)) * launchForce, ForceMode.Impulse);
 
         hasTriggered = true;
+    }
+
+    void Vanish()
+    {
+        Collider col = GetComponent<Collider>();
+        Material temp = GetComponent<Renderer>().material;
+
+        col.enabled = false;
+        GetComponent<Renderer>().material = clear;
+
+        StartCoroutine(Appear(col, temp));
+    }
+
+    IEnumerator Appear(Collider col, Material normal)
+    {
+        yield return new WaitForSeconds(0.75f);
+        col.enabled = true;
+        GetComponent<Renderer>().material = normal;
     }
 
 }
