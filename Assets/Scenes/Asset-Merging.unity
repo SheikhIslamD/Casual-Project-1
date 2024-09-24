@@ -659,7 +659,7 @@ MonoBehaviour:
   loseText: {fileID: 1462026076}
   scoreText: {fileID: 369852615}
   prefabPlayerPuck:
-  - {fileID: 5068023248480719150, guid: c1dec9939574edf42aeea1b7ff1f26df, type: 3}
+  - {fileID: 2422277049188799375, guid: 8361db4055b3d754d9ab39e217a552ce, type: 3}
   prefabEnemyPuck:
   - {fileID: 1185385775}
   - {fileID: 1486817690}
