@@ -1401,6 +1401,10 @@ PrefabInstance:
       propertyPath: Lens.FieldOfView
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 2810337991353569945, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
+      propertyPath: mat1
+      value: 
+      objectReference: {fileID: 2100000, guid: 72bbc88cb4f99ae42974409a2db7cf14, type: 2}
     - target: {fileID: 3538379432476418624, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
       propertyPath: m_IsActive
       value: 0

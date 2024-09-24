@@ -63,19 +63,26 @@ public class LaunchAbility : MonoBehaviour
 
     void Vanish()
     {
-        Collider col = GetComponent<Collider>();
-        Material temp = GetComponent<Renderer>().material;
+        Physics.IgnoreLayerCollision(9, 6);
+        Physics.IgnoreLayerCollision(9, 7);
+        Physics.IgnoreLayerCollision(9, 8);
 
-        col.enabled = false;
+        Material temp = GetComponent<MeshRenderer>().material;
+
         GetComponent<Renderer>().material = clear;
 
-        StartCoroutine(Appear(col, temp));
+        StartCoroutine(Appear(temp));
     }
 
-    IEnumerator Appear(Collider col, Material normal)
+    IEnumerator Appear(Material normal)
     {
         yield return new WaitForSeconds(0.75f);
-        col.enabled = true;
+
+
+        Physics.IgnoreLayerCollision(9, 6, false);
+        Physics.IgnoreLayerCollision(9, 7, false);
+        Physics.IgnoreLayerCollision(9, 8, false);
+
         GetComponent<Renderer>().material = normal;
     }
 
