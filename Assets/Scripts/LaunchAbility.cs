@@ -11,6 +11,7 @@ public class LaunchAbility : MonoBehaviour
     Vector3 launchAngle;
 
     public GameObject copy;
+    public static bool canDestroy;
 
     public Material clear;
     Material mat;
@@ -46,36 +47,52 @@ public class LaunchAbility : MonoBehaviour
     {
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.AddForce(launchAngle * launchForce, ForceMode.Impulse);
+
         hasTriggered = true;
     }
 
     void Multiply()
     {
-        // Thinking we do like "Holograms," not worth points and disappear when velocity = 0
+        hasTriggered = true;
         GameObject clone1 = Instantiate(copy, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(new Vector3(-90f, 180f, transform.rotation.z + 30)));
         GameObject clone2 = Instantiate(copy, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(new Vector3(-90f, 180f, transform.rotation.z - 30)));
 
         clone1.GetComponent<Rigidbody>().AddForce(new Vector3(launchAngle.x + Mathf.Cos(0.3f), 0, launchAngle.z + Mathf.Sin(0.3f)) * launchForce, ForceMode.Impulse);
         clone2.GetComponent<Rigidbody>().AddForce(new Vector3(launchAngle.x - Mathf.Cos(0.3f), 0, launchAngle.z - Mathf.Sin(0.3f)) * launchForce, ForceMode.Impulse);
+        canDestroy = false;
 
-        hasTriggered = true;
+        StartCoroutine(NowDestroy());
+    }
+
+    IEnumerator NowDestroy()
+    {
+        yield return new WaitForSeconds(0.1f);
+        canDestroy = true;
     }
 
     void Vanish()
     {
-        Collider col = GetComponent<Collider>();
-        Material temp = GetComponent<Renderer>().material;
+        hasTriggered = true;
+        Physics.IgnoreLayerCollision(9, 6);
+        Physics.IgnoreLayerCollision(9, 7);
+        Physics.IgnoreLayerCollision(9, 8);
 
-        col.enabled = false;
+        Material temp = GetComponent<MeshRenderer>().material;
+
         GetComponent<Renderer>().material = clear;
 
-        StartCoroutine(Appear(col, temp));
+        StartCoroutine(Appear(temp));
     }
 
-    IEnumerator Appear(Collider col, Material normal)
+    IEnumerator Appear(Material normal)
     {
         yield return new WaitForSeconds(0.75f);
-        col.enabled = true;
+
+
+        Physics.IgnoreLayerCollision(9, 6, false);
+        Physics.IgnoreLayerCollision(9, 7, false);
+        Physics.IgnoreLayerCollision(9, 8, false);
+
         GetComponent<Renderer>().material = normal;
     }
 
