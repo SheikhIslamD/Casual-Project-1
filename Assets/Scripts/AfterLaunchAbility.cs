@@ -104,7 +104,8 @@ public class AfterLaunchAbility : MonoBehaviour
                 // Make them move away from target
                 rb.angularVelocity = new Vector3(0, 2f, 0);
                 // Height has to be raised to match dog height for smooth movement
-                tf.position = Vector3.MoveTowards(tf.position, new Vector3(transform.position.x, transform.position.y + 0.12258f, transform.position.z), -power * Time.deltaTime);
+                tf.position = Vector3.MoveTowards(tf.position, new Vector3(transform.position.x, tf.position.y, transform.position.z), -power * Time.deltaTime);
+                //1.196082
             }
         }
 

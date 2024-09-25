@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     public int star2Diff, star3Diff;
     Image medal;
     public Sprite gold, silver, bronze, black;
-    public TextMeshProUGUI winText, loseText, scoreText;
+    TextMeshProUGUI winText, loseText, scoreText;
     Canvas inGameCanvas, endCanvas;
 
     public GameObject[] prefabPlayerPuck;
@@ -48,9 +48,11 @@ public class LevelManager : MonoBehaviour
                 {
                     // UI 3 star
                     medal.sprite = gold;
+                    return;
                 }
                 // UI 2 star
                 medal.sprite = silver;
+                return;
             }
             // UI 1 star
             medal.sprite = bronze;
