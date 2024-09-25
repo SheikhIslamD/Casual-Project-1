@@ -15,8 +15,8 @@ public class UI : MonoBehaviour
 
     public void UpdateScoreText()
     {
-        playerScoreText.text = "Player: " + ScoreTracker.playerScore;
-        enemyScoreText.text = "Enemy: " + ScoreTracker.enemyScore;
+        playerScoreText.text =  "" + ScoreTracker.playerScore;
+        enemyScoreText.text =  "" + ScoreTracker.enemyScore;
     }
 
     public void MakePlayerPiece()

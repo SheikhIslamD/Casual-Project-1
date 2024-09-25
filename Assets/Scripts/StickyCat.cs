@@ -9,9 +9,17 @@ public class StickyCat : MonoBehaviour
         Debug.Log(collision.collider);
         if (collision.collider.CompareTag("Player Piece") || collision.collider.CompareTag("Enemy Piece"))
         {
-            Debug.Log("Assigning joint");
-            collision.gameObject.AddComponent<FixedJoint>();
-            collision.gameObject.GetComponent<FixedJoint>().connectedBody = this.GetComponent<Rigidbody>();
+            Debug.Log("Merging"); 
+            collision.gameObject.GetComponent<Rigidbody>().detectCollisions = false;
+            Debug.Log("rb asleep");
+
+            Collider col = collision.collider;
+            Debug.Log(col);
+            Collider newCol = this.gameObject.AddComponent<Collider>();
+            Debug.Log(newCol);
+            newCol = col;
+
+            collision.collider.enabled = false;
         }
     }
 }

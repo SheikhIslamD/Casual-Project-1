@@ -67,7 +67,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 17cdd0fb193a45b438b5c48915e41071, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 715f61d521f6c504bbbbf07a6cdce817, type: 2}
+      objectReference: {fileID: 2100000, guid: 836e90ff0e83a1b49971560c03d6a254, type: 2}
     - target: {fileID: 919132149155446097, guid: 17cdd0fb193a45b438b5c48915e41071, type: 3}
       propertyPath: m_Name
       value: Cat Piece (Sticky)

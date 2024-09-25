@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     AfterLaunchAbility ala;
     LaunchAbility la;
 
-    Image arrowVisual;
+    Canvas arrowVisual;
     RectTransform arrowScale;
 
     GameObject player;
@@ -55,8 +55,8 @@ public class PlayerController : MonoBehaviour
     {
         lm = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
         
-        arrowScale = GameObject.Find("Arrow").GetComponent<RectTransform>();
-        arrowVisual = GameObject.Find("Arrow").GetComponent<Image>();
+        arrowScale = GameObject.Find("Aiming Canvas").GetComponent<RectTransform>();
+        arrowVisual = GameObject.Find("Aiming Canvas").GetComponent<Canvas>();
     }
 
     void Update()
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
         }
         // Rotate Model and Arrow
         rb.transform.rotation = Quaternion.Euler(-90f, angle, 0f);
-        arrowScale.rotation = Quaternion.Euler(-90f, 0f, angle);
+        arrowScale.rotation = Quaternion.Euler(90f, 0f, -angle);
 
         //Adjust launch Angle
         launchAngle = launchAngle + (directionRate * Time.deltaTime);
