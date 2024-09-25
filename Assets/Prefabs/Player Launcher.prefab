@@ -184,7 +184,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4077706019202254030}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc48891b9f8f8eb41b9064dd6486dcf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardBounds: 0
   force: 25
   angle: 180
 --- !u!1 &5371390963669423321

@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2780487485156624768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7812292031700467291}
+  - component: {fileID: 3686494589422432928}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Level Manager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7812292031700467291
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2780487485156624768}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.06413204, y: -2.12384, z: -3.7234614}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3686494589422432928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2780487485156624768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6cb152f4ebddd4495f762d1dc66398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turn: 0
+  turnMax: 0
+  star2Diff: 1
+  star3Diff: 2
+  gold: {fileID: 21300000, guid: 5ee6b02b0eead4ca4b163808222e8f31, type: 3}
+  silver: {fileID: 21300000, guid: a3b0b0527c64c4975a32a49da265a160, type: 3}
+  bronze: {fileID: 21300000, guid: 773eb6666f18c46b49df959eed0de01f, type: 3}
+  black: {fileID: 21300000, guid: 773eb6666f18c46b49df959eed0de01f, type: 3}
+  winText: {fileID: 0}
+  loseText: {fileID: 0}
+  scoreText: {fileID: 0}
+  prefabPlayerPuck:
+  - {fileID: 5765186643443262178, guid: 88b7792c51c0a1a43a9147a479368dcb, type: 3}
+  - {fileID: 5765186643443262178, guid: 88b7792c51c0a1a43a9147a479368dcb, type: 3}
+  - {fileID: 5765186643443262178, guid: 88b7792c51c0a1a43a9147a479368dcb, type: 3}
+  prefabEnemyPuck:
+  - {fileID: 0}
+  - {fileID: 0}

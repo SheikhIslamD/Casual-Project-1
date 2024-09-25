@@ -40,6 +40,7 @@ public class LevelManager : MonoBehaviour
         {
             // UI Win Text
             winText.enabled = true;
+            loseText.enabled = false;
 
             if (ScoreTracker.playerScore - ScoreTracker.enemyScore >= star2Diff)
             {
@@ -58,6 +59,7 @@ public class LevelManager : MonoBehaviour
 
         // UI lose Text
         loseText.enabled = true;
+        winText.enabled = false;
         medal.sprite = black;
         return;
     }
@@ -81,10 +83,11 @@ public class LevelManager : MonoBehaviour
         turn = 0;
         PlayerController.playing = true;
 
-        inGameCanvas = GameObject.Find("UI").GetComponent<Canvas>();
+        inGameCanvas = GameObject.Find("HUD").GetComponent<Canvas>();
         endCanvas = GameObject.Find("End Screen").GetComponent<Canvas>();
 
         inGameCanvas.enabled = true;
+        endCanvas.enabled = false;
 
         medal = GameObject.Find("Medal").GetComponent<Image>();
         winText = GameObject.Find("WinText").GetComponent<TextMeshProUGUI>();

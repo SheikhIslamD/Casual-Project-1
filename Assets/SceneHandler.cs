@@ -3,6 +3,10 @@ using UnityEngine.SceneManagement; // Include this namespace for scene managemen
 
 public class SceneHandler : MonoBehaviour
 {
+    //audio stuff
+    public AudioClip tunacanSound;
+    public AudioSource audioSource;
+
     // The name of the scene to load
     public string newSceneName;
 
@@ -37,5 +41,10 @@ public class SceneHandler : MonoBehaviour
     public void quitGame()
     {
         Application.Quit();
+    }
+
+    public void PlayMenuSound()
+    {
+        audioSource.PlayOneShot(tunacanSound);
     }
 }

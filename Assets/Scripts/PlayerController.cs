@@ -186,6 +186,8 @@ public class PlayerController : MonoBehaviour
             ala = player.GetComponent<AfterLaunchAbility>();
             la = player.GetComponent<LaunchAbility>();
 
+            Debug.Log("Puck spawned, name is:" + lm.prefabPlayerPuck[num].name);
+
             if (ala != null)
             {
                 hasAfterAbility = true;
@@ -210,7 +212,7 @@ public class PlayerController : MonoBehaviour
                 arrowVisual.enabled = false;
                 inPrep = false;
                 Launch();
-                SoundEffects.instance.PlaySoundEffect(SoundEffects.instance.slip, transform, 1, null);
+                SoundEffects.instance.PlaySoundEffect(SoundEffects.instance.slide, transform, 1, null);
             }
         }
         else
