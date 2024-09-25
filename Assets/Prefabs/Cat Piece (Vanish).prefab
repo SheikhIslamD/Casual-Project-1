@@ -81,6 +81,10 @@ PrefabInstance:
       value: Cat Piece (Vanish)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 17cdd0fb193a45b438b5c48915e41071, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 17cdd0fb193a45b438b5c48915e41071, type: 3}
       propertyPath: m_TagString
       value: Player Piece
       objectReference: {fileID: 0}
@@ -182,4 +186,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ability: Vanish
   copy: {fileID: 0}
-  clear: {fileID: 0}
+  clear: {fileID: 2100000, guid: 338edc5c83566354b9d18d8c8b04d53f, type: 2}
