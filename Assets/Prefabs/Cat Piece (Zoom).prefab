@@ -67,7 +67,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 17cdd0fb193a45b438b5c48915e41071, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3147c369c7f1f22449be1d88b0a9c0f7, type: 2}
+      objectReference: {fileID: 2100000, guid: cf974f39681596c4a825606ee5f616a8, type: 2}
     - target: {fileID: 919132149155446097, guid: 17cdd0fb193a45b438b5c48915e41071, type: 3}
       propertyPath: m_Name
       value: Cat Piece (Zoom)
