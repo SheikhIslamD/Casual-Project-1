@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     float forceMax = 40f;
 
     float angle = 180f;
-    float angleRate = 20f;
+    float angleRate = 30f;
 
     public static bool playing;
     static bool turnStarted;
@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        // Establish Inputs
         movementKeys = InputSystem.actions.FindAction("Move");
         jumpKey = InputSystem.actions.FindAction("Jump");            
 
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        //Get Level manager from scene
         lm = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
     }
 
@@ -60,6 +62,7 @@ public class PlayerController : MonoBehaviour
         {
             if (inPrep)
             {
+                // Allow player to move and aim arrow swings
                 AimMovement();
             }
 
@@ -130,9 +133,6 @@ public class PlayerController : MonoBehaviour
             }
 
             // Assign Value to charge visual
-
-            // so fore/minforce = 1 then -100 but force/maxforce = 1 then 0  max is 40 min is 20
-            // Need to Correct
             charge = -100 + 3.333f * (force - 10);
 
             // Arrow Scales with Force

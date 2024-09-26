@@ -210,9 +210,9 @@ MonoBehaviour:
   bronze: {fileID: 21300000, guid: 773eb6666f18c46b49df959eed0de01f, type: 3}
   black: {fileID: 21300000, guid: ff711560689384157b1881feeef0d6f0, type: 3}
   prefabPlayerPuck:
-  - {fileID: 2422277049188799375, guid: 8361db4055b3d754d9ab39e217a552ce, type: 3}
-  - {fileID: 2422277049188799375, guid: 8361db4055b3d754d9ab39e217a552ce, type: 3}
-  - {fileID: 2422277049188799375, guid: 8361db4055b3d754d9ab39e217a552ce, type: 3}
+  - {fileID: 7239596911925580646, guid: 18fe4981551978541b1ffcbca125b2f7, type: 3}
+  - {fileID: 6591873835938418777, guid: 8c28bf62d11fe99489975249b00221d5, type: 3}
+  - {fileID: 7749019058495466915, guid: 7997a31242fd9b144b42074a4f9e518e, type: 3}
   prefabEnemyPuck:
   - {fileID: 1185385775}
   - {fileID: 1486817690}
@@ -995,13 +995,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kitchen Chair
       objectReference: {fileID: 0}
+    - target: {fileID: -9059465404619298788, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -8821419048296450854, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
+    - target: {fileID: -8821419048296450854, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -8767424149964891559, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
       propertyPath: m_Name
       value: TV Stand
+      objectReference: {fileID: 0}
+    - target: {fileID: -8767424149964891559, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
       propertyPath: m_LocalScale.x
@@ -1063,17 +1075,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Office Chair
       objectReference: {fileID: 0}
+    - target: {fileID: -4678683183462417478, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -2615453208677245630, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
       propertyPath: m_Name
       value: Cubby Box
+      objectReference: {fileID: 0}
+    - target: {fileID: -2615453208677245630, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -1847713018245193997, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
       propertyPath: m_Name
       value: Love Seat
       objectReference: {fileID: 0}
+    - target: {fileID: -1847713018245193997, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -844543299812035762, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.943
+      value: -0.8809
       objectReference: {fileID: 0}
     - target: {fileID: -844543299812035762, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1081,7 +1105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -844543299812035762, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.1315
+      value: -0.14
       objectReference: {fileID: 0}
     - target: {fileID: -844543299812035762, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1104,6 +1128,10 @@ PrefabInstance:
       value: furniture_kit
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -1111,21 +1139,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Office Desk
       objectReference: {fileID: 0}
+    - target: {fileID: 1237035102353046264, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2092211576484563784, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
       propertyPath: m_Name
       value: Table
+      objectReference: {fileID: 0}
+    - target: {fileID: 2092211576484563784, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4305207569476479301, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
       propertyPath: m_Name
       value: Couch
       objectReference: {fileID: 0}
+    - target: {fileID: 4305207569476479301, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6926731214959127930, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
       propertyPath: m_Name
       value: Coffee Table
       objectReference: {fileID: 0}
+    - target: {fileID: 6926731214959127930, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8555046904898354361, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
       propertyPath: m_Name
       value: House Plant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555046904898354361, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

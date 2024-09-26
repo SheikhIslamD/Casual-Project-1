@@ -9,12 +9,14 @@ public class LevelManager : MonoBehaviour
     public int turn = 0;
     public int turnMax;
 
+    // Info for End of Level UI
     public int star2Diff, star3Diff;
     Image medal;
     public Sprite gold, silver, bronze, black;
     TextMeshProUGUI winText, loseText, tiedText, scoreText;
     Canvas inGameCanvas, endCanvas;
 
+    // Arrays to track all active pieces in scene
     public GameObject[] prefabPlayerPuck;
     public GameObject[] prefabEnemyPuck;
 
@@ -68,6 +70,7 @@ public class LevelManager : MonoBehaviour
         return;
     }
 
+    // Check all pieces in scene and ensure they've stopped moving
     public bool VelocityZero()
     {
         foreach (GameObject dog in prefabEnemyPuck)
@@ -81,6 +84,7 @@ public class LevelManager : MonoBehaviour
         return true;
     }
 
+    // Called once in every scene, gets the components neccessary for script functions
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Calls on Scene Loaded");

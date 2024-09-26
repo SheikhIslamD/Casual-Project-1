@@ -157,8 +157,9 @@ MonoBehaviour:
   black: {fileID: 21300000, guid: ff711560689384157b1881feeef0d6f0, type: 3}
   prefabPlayerPuck:
   - {fileID: 58344071952303487, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
-  - {fileID: 58344071952303487, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
-  - {fileID: 5643562957493645390, guid: e268b42f7a7e2e74dae6858bfdee6794, type: 3}
+  - {fileID: 7749019058495466915, guid: 7997a31242fd9b144b42074a4f9e518e, type: 3}
+  - {fileID: 5361261152192249906, guid: 3b9f72b99c9288f4290f9b69fe8b966f, type: 3}
+  - {fileID: 6591873835938418777, guid: 8c28bf62d11fe99489975249b00221d5, type: 3}
   prefabEnemyPuck: []
 --- !u!4 &35865336
 Transform:
