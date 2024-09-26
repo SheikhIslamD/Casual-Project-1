@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5665160012947895601
+--- !u!1001 &5379621236302333261
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,31 +10,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 58344071952303487, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
       propertyPath: m_Name
-      value: 'Cat Piece (Chonky) '
-      objectReference: {fileID: 0}
-    - target: {fileID: 829954477879975877, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 6.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 829954477879975877, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 6.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 829954477879975877, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 4.2
+      value: Cat Piece (Clone) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 829954477879975877, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.91
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 829954477879975877, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.167135
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 829954477879975877, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.03
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 829954477879975877, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -64,16 +52,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 829954477879975877, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2004026998230885546, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: e47ef74799d7b36488174e25f7a88cf3, type: 2}
+      objectReference: {fileID: 2100000, guid: 817f1e11ae611b54b943567637defbe6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 58344071952303487, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2385811455035918832}
   m_SourcePrefab: {fileID: 100100000, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
+--- !u!1 &5361261152192249906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 58344071952303487, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
+  m_PrefabInstance: {fileID: 5379621236302333261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2385811455035918832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5361261152192249906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 865e21d2889ab184f9c33db24ff265d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ability: Multiply
+  copy: {fileID: 1336685357885521215, guid: 3998967e0a2846140a64bf55c1f391d0, type: 3}
+  clear: {fileID: 0}
