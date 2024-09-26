@@ -210,9 +210,9 @@ MonoBehaviour:
   bronze: {fileID: 21300000, guid: 773eb6666f18c46b49df959eed0de01f, type: 3}
   black: {fileID: 21300000, guid: ff711560689384157b1881feeef0d6f0, type: 3}
   prefabPlayerPuck:
-  - {fileID: 3929998242236406031, guid: f64deda957efaaa4999aa4099b1dcef9, type: 3}
   - {fileID: 5068023248480719150, guid: c1dec9939574edf42aeea1b7ff1f26df, type: 3}
-  - {fileID: 2422277049188799375, guid: 8361db4055b3d754d9ab39e217a552ce, type: 3}
+  - {fileID: 5068023248480719150, guid: c1dec9939574edf42aeea1b7ff1f26df, type: 3}
+  - {fileID: 5068023248480719150, guid: c1dec9939574edf42aeea1b7ff1f26df, type: 3}
   prefabEnemyPuck:
   - {fileID: 1185385775}
   - {fileID: 1486817690}

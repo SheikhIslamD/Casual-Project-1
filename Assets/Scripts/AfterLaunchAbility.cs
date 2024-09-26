@@ -8,14 +8,18 @@ public class AfterLaunchAbility : MonoBehaviour
 {
     LevelManager lm;
 
+    List<SoundEffectTrigger> st;
+    List<Transform> tf;
+    List<Rigidbody> rb;
+
     public List<GameObject> targetObjects;
 
     public bool hasTriggered;
+    public static bool active;
+    public bool allocated;
 
     public string ability;
     public float range, power;
-
-    bool checkCollision;
 
     private void Awake()
     {
@@ -41,26 +45,41 @@ public class AfterLaunchAbility : MonoBehaviour
                     Push();
                     break;
             }
-        }
-        
+        }        
     }
 
     public void GetObjects(string targets, int maxSize)
     {
-        float distance = 0;
-
-        // Fill a list of GameObjects with pieces of the targeted tag
-        targetObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag(targets));
-
-        // Remoe all pieces outside the range of the ability piece
-        for (int i = 0; i < targetObjects.Count; i++)
+        if(!allocated)
         {
-            distance = Mathf.Abs(Vector3.Distance(transform.position, targetObjects[i].transform.position));
+            Debug.Log("Check Call Count");
+            float distance = 0;
 
-            if (distance > range || distance == 0)
+            // Fill a list of GameObjects with pieces of the targeted tag
+            targetObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag(targets));
+            st = new List<SoundEffectTrigger>();
+            tf = new List<Transform>();
+            rb = new List<Rigidbody>();
+
+            // Remoe all pieces outside the range of the ability piece
+            for (int i = 0; i < targetObjects.Count; i++)
             {
-                targetObjects.Remove(targetObjects[i]);
+                distance = Mathf.Abs(Vector3.Distance(transform.position, targetObjects[i].transform.position));
+
+                if (distance > range || distance == 0)
+                {
+                    targetObjects.Remove(targetObjects[i]);
+                }
             }
+
+            for (int i = 0; i < targetObjects.Count; i++)
+            {
+                st.Add(targetObjects[i].GetComponent<SoundEffectTrigger>());
+                tf.Add(targetObjects[i].GetComponent<Transform>());
+                rb.Add(targetObjects[i].GetComponent<Rigidbody>());
+            }
+
+            allocated = true;
         }
     }
 
@@ -72,18 +91,15 @@ public class AfterLaunchAbility : MonoBehaviour
         // Ensure List is not empty
         if (targetObjects != null && targetObjects.Count > 0)
         {
+            active = true;
             // For each piece in list, pull and spin those pieces
             for (int i = 0; i < targetObjects.Count; i++)
-            {
-                Transform tf  = targetObjects[i].transform;
-                Rigidbody rb = targetObjects[i].GetComponent<Rigidbody>();
-                checkCollision = false;
+            {                
+                rb[i].angularVelocity = new Vector3(0, 1.5f, 0);
 
-                // Make them move towards target
-                if(!CheckCollision)
-                {                        
-                    rb.angularVelocity = new Vector3(0, 1.5f, 0);
-                    tf.position = Vector3.MoveTowards(tf.position, transform.position, power * Time.deltaTime);
+                if (!st[i].gravityCollision)
+                {
+                    tf[i].position = Vector3.MoveTowards(tf[i].position, transform.position, power * Time.deltaTime);
                 }
             }
         }
@@ -99,16 +115,21 @@ public class AfterLaunchAbility : MonoBehaviour
         // Ensure List is not empty
         if (targetObjects != null && targetObjects.Count > 0)
         {
+            active = true;
+            Debug.Log("active? " + active);
             // For each piece in list, push and spin those pieces
             for (int i = 0; i < targetObjects.Count; i++)
             {
-                Transform tf = targetObjects[i].transform;
-                Rigidbody rb = targetObjects[i].GetComponent<Rigidbody>();
-
                 // Make them move away from target
-                rb.angularVelocity = new Vector3(0, 2f, 0);
-                // Height has to be raised to match dog height for smooth movement
-                tf.position = Vector3.MoveTowards(tf.position, new Vector3(transform.position.x, tf.position.y, transform.position.z), -power * Time.deltaTime);
+                rb[i].angularVelocity = new Vector3(0, 2f, 0);
+
+                Debug.Log("Has Collided? " + st[i].gravityCollision);
+
+                if (!st[i].gravityCollision)
+                {                    
+                    // Height has to be raised to match dog height for smooth movement
+                    tf[i].position = Vector3.MoveTowards(tf[i].position, new Vector3(transform.position.x, tf[i].position.y, transform.position.z), -power * Time.deltaTime);
+                }
                 //1.196082
             }
         }
@@ -121,5 +142,11 @@ public class AfterLaunchAbility : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         hasTriggered = true;
+        active = false;
+
+        for (int i = 0; i < targetObjects.Count; i++)
+        {
+            st[i].gravityCollision = false;
+        }
     }
 }
