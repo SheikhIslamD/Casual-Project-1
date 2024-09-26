@@ -21,16 +21,13 @@ public class PlayerController : MonoBehaviour
 
     public float boardBounds;
 
-    float force = 20f;
+    float force = 10f;
     float forceRate = 10f;
-    float forceMin = 20f;
+    float forceMin = 10f;
     float forceMax = 40f;
 
     float angle = 180f;
     float angleRate = 20f;
-    float launchAngle = 1.6f;
-    float directionRate = -0.36f;
-    Vector3 angleApplied = Vector3.forward;
 
     public static bool playing;
     static bool turnStarted;
@@ -94,10 +91,8 @@ public class PlayerController : MonoBehaviour
 
     void AimMovement()
     {
-        // Cat and Arrow swing to show aim
-        AimingVisuals();
-        // Actual Launch Aiming
-        Aiming();
+        // Launch Angle visual movements
+        AimingModel();
 
         // Take Input
         float horizontal = movementKeys.ReadValue<Vector2>().x;
@@ -124,10 +119,9 @@ public class PlayerController : MonoBehaviour
             float charge = -100;
             // Stop Rotation
             angleRate = 0;
-            directionRate = 0;
 
             // Charge
-            force = force + (forceRate * Time.deltaTime);
+            force = force + (forceRate * 2 * Time.deltaTime);
 
             // Flux other direction
             if (force >= forceMax || force <= forceMin)
@@ -139,18 +133,18 @@ public class PlayerController : MonoBehaviour
 
             // so fore/minforce = 1 then -100 but force/maxforce = 1 then 0  max is 40 min is 20
             // Need to Correct
-            charge = -100 + 5 * (force - 20);
+            charge = -100 + 3.333f * (force - 10);
 
             // Arrow Scales with Force
             arrowScale.anchoredPosition = new Vector3(0f, charge, 0f);
 
-            Debug.DrawRay(rb.transform.position, angleApplied * (force / 10), Color.blue);
+            Debug.DrawRay(rb.transform.position, rb.transform.up * (force / 10), Color.blue);
         }
 
 
     }
 
-    void AimingVisuals()
+    void AimingModel()
     {
         // Turn on Arrow UI
         arrowVisual.enabled = true;
@@ -158,22 +152,14 @@ public class PlayerController : MonoBehaviour
         // Angle for Model & Arrow
         angle = angle + (angleRate * Time.deltaTime);
         // Bound for that Angle
-        if (angle <= 125f || angle >= 235f) angleRate = -angleRate;
+        if (angle <= 120f || angle >= 240f) angleRate = -angleRate;
         // Rotate Model and Arrow
         rb.transform.rotation = Quaternion.Euler(-90f, angle, 0f);
         arrowAngle.rotation = Quaternion.Euler(180f, angle, 0);
+        // Debug Ray
+        Debug.DrawRay(rb.transform.position, rb.transform.up, Color.green);
     }
-    void Aiming()
-    {
-        //Adjust launch Angle
-        launchAngle = launchAngle + (directionRate * Time.deltaTime);
-        // Launch Angle Bounds
-        if (launchAngle <= .6f || launchAngle >= 2.57f) directionRate = -directionRate;
-        // Launch Angle set to Vector3
-        angleApplied = new Vector3(Mathf.Cos(launchAngle), 0, Mathf.Sin(launchAngle));
-        // Draw Launch Angle
-        Debug.DrawRay(rb.transform.position, angleApplied, Color.green);
-    }
+
     void StartTurn(int turn)
     {
         // Start Turn
@@ -229,7 +215,7 @@ public class PlayerController : MonoBehaviour
             // During launch ability
             if (jumpKey.WasReleasedThisFrame() && hasLaunchAbility) 
             {
-                la.UseLaunchAbility(angleApplied, force);
+                la.UseLaunchAbility(force);
             }
 
             // Detect when puck has stopped
@@ -257,7 +243,7 @@ public class PlayerController : MonoBehaviour
     {
         //Apply Force
         Debug.Log("Launched");
-        rb.AddForce(angleApplied * force, ForceMode.Impulse);
+        rb.AddForce(rb.transform.up * force, ForceMode.Impulse);
         StartCoroutine(DelayCheck());
     }
 
@@ -266,10 +252,7 @@ public class PlayerController : MonoBehaviour
         // Reset variables
         force = forceMin;
         angle = 180f;
-        launchAngle = 1.6f;
-        angleApplied = Vector3.forward;
         angleRate = 20f;
-        directionRate = -0.36f;
 
         //UI Set for arrow
         arrowScale.anchoredPosition = new Vector3(0f, -100f, 0f);

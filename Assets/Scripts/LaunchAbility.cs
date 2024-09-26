@@ -16,11 +16,10 @@ public class LaunchAbility : MonoBehaviour
     public Material clear;
     Material mat;
 
-    public void UseLaunchAbility(Vector3 currentAngle, float currentForce)
+    public void UseLaunchAbility(float currentForce)
     {
         Debug.Log("Running Ability Now");
 
-        launchAngle = currentAngle;
         launchForce = currentForce;
 
         if (!hasTriggered)
@@ -46,7 +45,7 @@ public class LaunchAbility : MonoBehaviour
     void Zoom()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
-        rb.AddForce(launchAngle * launchForce, ForceMode.Impulse);
+        rb.AddForce(transform.forward * launchForce, ForceMode.Impulse);
 
         hasTriggered = true;
     }
