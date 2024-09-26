@@ -440,12 +440,10 @@ MonoBehaviour:
   bronze: {fileID: 21300000, guid: 773eb6666f18c46b49df959eed0de01f, type: 3}
   black: {fileID: 21300000, guid: ff711560689384157b1881feeef0d6f0, type: 3}
   prefabPlayerPuck:
-  - {fileID: 5765186643443262178, guid: 88b7792c51c0a1a43a9147a479368dcb, type: 3}
-  - {fileID: 5765186643443262178, guid: 88b7792c51c0a1a43a9147a479368dcb, type: 3}
-  - {fileID: 2422277049188799375, guid: 8361db4055b3d754d9ab39e217a552ce, type: 3}
-  - {fileID: 5068023248480719150, guid: c1dec9939574edf42aeea1b7ff1f26df, type: 3}
-  - {fileID: 6122205378930540760, guid: 6da65ca87de201d46a9b650bd32ecfcc, type: 3}
-  - {fileID: 5643562957493645390, guid: e268b42f7a7e2e74dae6858bfdee6794, type: 3}
+  - {fileID: 5361261152192249906, guid: 3b9f72b99c9288f4290f9b69fe8b966f, type: 3}
+  - {fileID: 6199890275335977829, guid: d697e9eb5d0e94c488de97b990285ce7, type: 3}
+  - {fileID: 2070977838607497286, guid: 15bad2bf42835774581e33b7c4798901, type: 3}
+  - {fileID: 6539898861649509643, guid: bae7d4498933fb94d9f228a4b840dc8e, type: 3}
   prefabEnemyPuck:
   - {fileID: 1185385775}
   - {fileID: 1737729514}
