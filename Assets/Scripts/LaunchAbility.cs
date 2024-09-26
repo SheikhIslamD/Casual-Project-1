@@ -45,7 +45,7 @@ public class LaunchAbility : MonoBehaviour
     void Zoom()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * launchForce, ForceMode.Impulse);
+        rb.AddForce(rb.transform.up * launchForce, ForceMode.Impulse);
 
         hasTriggered = true;
     }
