@@ -9,7 +9,7 @@ public class SceneHandler : MonoBehaviour
     public AudioSource audioSource;
 
     // The root GameObject of the current scene to disable when loading the new scene
-    public GameObject currentSceneRoot;
+    public Canvas currentSceneRoot;
     // Where We're Going
     public string whereTo;
 
@@ -38,7 +38,7 @@ public class SceneHandler : MonoBehaviour
         // Disable the current scene root if it exists
         if (currentSceneRoot != null)
         {
-            currentSceneRoot.SetActive(false);
+            currentSceneRoot.enabled = false;
         }
         else
         {

@@ -15,7 +15,7 @@ public class AfterLaunchAbility : MonoBehaviour
     public string ability;
     public float range, power;
 
-
+    bool checkCollision;
 
     private void Awake()
     {
@@ -77,10 +77,14 @@ public class AfterLaunchAbility : MonoBehaviour
             {
                 Transform tf  = targetObjects[i].transform;
                 Rigidbody rb = targetObjects[i].GetComponent<Rigidbody>();
+                checkCollision = false;
 
                 // Make them move towards target
-                rb.angularVelocity = new Vector3(0, 1.5f, 0);
-                tf.position = Vector3.MoveTowards(tf.position, transform.position, power * Time.deltaTime);
+                if(!CheckCollision)
+                {                        
+                    rb.angularVelocity = new Vector3(0, 1.5f, 0);
+                    tf.position = Vector3.MoveTowards(tf.position, transform.position, power * Time.deltaTime);
+                }
             }
         }
 

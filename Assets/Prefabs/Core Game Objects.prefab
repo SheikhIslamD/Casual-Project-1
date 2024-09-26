@@ -3688,7 +3688,7 @@ MonoBehaviour:
   tunacanSound: {fileID: 0}
   blink: {fileID: 8300000, guid: bf40b0aead126ee4ba4f97e5d51825a2, type: 3}
   audioSource: {fileID: 5965643604675716737}
-  currentSceneRoot: {fileID: 5564769473155496931}
+  currentSceneRoot: {fileID: 5051823963288251710}
   whereTo: Menu
 --- !u!1001 &629612775457559355
 PrefabInstance:
@@ -3847,7 +3847,7 @@ MonoBehaviour:
   tunacanSound: {fileID: 0}
   blink: {fileID: 8300000, guid: bf40b0aead126ee4ba4f97e5d51825a2, type: 3}
   audioSource: {fileID: 5965643604675716737}
-  currentSceneRoot: {fileID: 5564769473155496931}
+  currentSceneRoot: {fileID: 5051823963288251710}
   whereTo: Quit
 --- !u!1001 &782831156156094994
 PrefabInstance:
@@ -4108,7 +4108,7 @@ MonoBehaviour:
   tunacanSound: {fileID: 0}
   blink: {fileID: 8300000, guid: bf40b0aead126ee4ba4f97e5d51825a2, type: 3}
   audioSource: {fileID: 5965643604675716737}
-  currentSceneRoot: {fileID: 5564769473155496931}
+  currentSceneRoot: {fileID: 5051823963288251710}
   whereTo: Retry
 --- !u!1001 &3616786117814148178
 PrefabInstance:
@@ -4267,5 +4267,5 @@ MonoBehaviour:
   tunacanSound: {fileID: 0}
   blink: {fileID: 8300000, guid: bf40b0aead126ee4ba4f97e5d51825a2, type: 3}
   audioSource: {fileID: 5965643604675716737}
-  currentSceneRoot: {fileID: 5564769473155496931}
+  currentSceneRoot: {fileID: 5051823963288251710}
   whereTo: Next

@@ -6962,7 +6962,7 @@ MonoBehaviour:
   tunacanSound: {fileID: 8300000, guid: 71772c676e197c74fbcbb97e3ff38c88, type: 3}
   blink: {fileID: 0}
   audioSource: {fileID: 1679155478}
-  currentSceneRoot: {fileID: 770482728}
+  currentSceneRoot: {fileID: 770482731}
   whereTo: Next
 --- !u!82 &1679155478
 AudioSource:
