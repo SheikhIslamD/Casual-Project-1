@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     public int star2Diff, star3Diff;
     Image medal;
     public Sprite gold, silver, bronze, black;
-    TextMeshProUGUI winText, loseText, scoreText;
+    TextMeshProUGUI winText, loseText, tiedText, scoreText;
     Canvas inGameCanvas, endCanvas;
 
     public GameObject[] prefabPlayerPuck;
@@ -35,15 +35,17 @@ public class LevelManager : MonoBehaviour
         // Show final score
         scoreText.text = "Score: " + (ScoreTracker.playerScore - ScoreTracker.enemyScore);
 
+        // Prep text fields
+        winText.enabled = false;
+        tiedText.enabled = false;
+        loseText.enabled = false;
+
         // If player score meets score requirements, allocate stars
         if (ScoreTracker.playerScore >= ScoreTracker.enemyScore)
         {
-            // UI Win Text
-            winText.enabled = true;
-            loseText.enabled = false;
-
             if (ScoreTracker.playerScore - ScoreTracker.enemyScore >= star2Diff)
             {
+                winText.enabled = true;
                 if (ScoreTracker.playerScore - ScoreTracker.enemyScore >= star3Diff)
                 {
                     // UI 3 star
@@ -53,15 +55,15 @@ public class LevelManager : MonoBehaviour
                 // UI 2 star
                 medal.sprite = silver;
                 return;
-            }
+            }            
             // UI 1 star
+            tiedText.enabled = true;
             medal.sprite = bronze;
             return;
         }
 
         // UI lose Text
         loseText.enabled = true;
-        winText.enabled = false;
         medal.sprite = black;
         return;
     }
@@ -94,6 +96,7 @@ public class LevelManager : MonoBehaviour
         medal = GameObject.Find("Medal").GetComponent<Image>();
         winText = GameObject.Find("WinText").GetComponent<TextMeshProUGUI>();
         loseText = GameObject.Find("LoseText").GetComponent<TextMeshProUGUI>();
+        tiedText = GameObject.Find("TiedText").GetComponent<TextMeshProUGUI>();
         scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
     }
 }

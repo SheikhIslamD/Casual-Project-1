@@ -72,9 +72,8 @@ public class LaunchAbility : MonoBehaviour
     void Vanish()
     {
         hasTriggered = true;
-        Physics.IgnoreLayerCollision(9, 6);
-        Physics.IgnoreLayerCollision(9, 7);
-        Physics.IgnoreLayerCollision(9, 8);
+        Physics.IgnoreLayerCollision(8, 6);
+        Physics.IgnoreLayerCollision(8, 7);
 
         Material temp = GetComponent<MeshRenderer>().material;
 
@@ -85,12 +84,11 @@ public class LaunchAbility : MonoBehaviour
 
     IEnumerator Appear(Material normal)
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.8f);
 
 
-        Physics.IgnoreLayerCollision(9, 6, false);
-        Physics.IgnoreLayerCollision(9, 7, false);
-        Physics.IgnoreLayerCollision(9, 8, false);
+        Physics.IgnoreLayerCollision(8, 6, false);
+        Physics.IgnoreLayerCollision(8, 7, false);
 
         GetComponent<Renderer>().material = normal;
     }

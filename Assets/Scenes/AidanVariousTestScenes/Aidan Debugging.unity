@@ -210,9 +210,9 @@ MonoBehaviour:
   bronze: {fileID: 21300000, guid: 773eb6666f18c46b49df959eed0de01f, type: 3}
   black: {fileID: 21300000, guid: ff711560689384157b1881feeef0d6f0, type: 3}
   prefabPlayerPuck:
-  - {fileID: 5068023248480719150, guid: c1dec9939574edf42aeea1b7ff1f26df, type: 3}
-  - {fileID: 5068023248480719150, guid: c1dec9939574edf42aeea1b7ff1f26df, type: 3}
-  - {fileID: 5068023248480719150, guid: c1dec9939574edf42aeea1b7ff1f26df, type: 3}
+  - {fileID: 2422277049188799375, guid: 8361db4055b3d754d9ab39e217a552ce, type: 3}
+  - {fileID: 2422277049188799375, guid: 8361db4055b3d754d9ab39e217a552ce, type: 3}
+  - {fileID: 2422277049188799375, guid: 8361db4055b3d754d9ab39e217a552ce, type: 3}
   prefabEnemyPuck:
   - {fileID: 1185385775}
   - {fileID: 1486817690}
@@ -1070,6 +1070,34 @@ PrefabInstance:
     - target: {fileID: -1847713018245193997, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
       propertyPath: m_Name
       value: Love Seat
+      objectReference: {fileID: 0}
+    - target: {fileID: -844543299812035762, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.943
+      objectReference: {fileID: 0}
+    - target: {fileID: -844543299812035762, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.233
+      objectReference: {fileID: 0}
+    - target: {fileID: -844543299812035762, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1315
+      objectReference: {fileID: 0}
+    - target: {fileID: -844543299812035762, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -844543299812035762, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -844543299812035762, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -844543299812035762, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
       propertyPath: m_Name
