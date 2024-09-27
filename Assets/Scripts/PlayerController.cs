@@ -31,9 +31,15 @@ public class PlayerController : MonoBehaviour
 
     public static bool playing;
     static bool turnStarted;
-    static bool inPrep;
+    public static bool inPrep;
     static bool isLaunched;
     static bool isInstant;
+
+    // Stuff for the Intro Scene
+    public static bool doneIntro;
+    public static bool canMove;
+    public static bool canAim;
+    public static bool canLaunch;
 
     public static bool hasLaunchAbility = false;
     public static bool hasAfterAbility = false;
@@ -60,7 +66,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playing)
         {
-            if (inPrep)
+            if (inPrep && canMove)
             {
                 // Allow player to move and aim arrow swings
                 AimMovement();
@@ -71,8 +77,8 @@ public class PlayerController : MonoBehaviour
                 // For each turn
                 if (lm.turn < lm.turnMax)
                 {
-                    // Init the turn
-                    StartTurn(lm.turn);
+                        // Init the turn
+                        StartTurn(lm.turn);
                 }
                 // After all the turns
                 else if (lm.turn == lm.turnMax)
@@ -94,8 +100,11 @@ public class PlayerController : MonoBehaviour
 
     void AimMovement()
     {
-        // Launch Angle visual movements
-        AimingModel();
+        if (canAim)
+        {
+            // Launch Angle visual movements
+            AimingModel();
+        }
 
         // Take Input
         float horizontal = movementKeys.ReadValue<Vector2>().x;
@@ -117,7 +126,7 @@ public class PlayerController : MonoBehaviour
         rb.transform.position = new Vector3(transform.position.x, 1.056f, -10.26124f);
 
         // When Space is Held, Charge Force Amount
-        if (jumpKey.IsPressed())
+        if (jumpKey.IsPressed() && canLaunch)
         {
             float charge = -100;
             // Stop Rotation
@@ -160,7 +169,7 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(rb.transform.position, rb.transform.up, Color.green);
     }
 
-    void StartTurn(int turn)
+    public void StartTurn(int turn)
     {
         // Start Turn
         turnStarted = true;
@@ -202,7 +211,7 @@ public class PlayerController : MonoBehaviour
         if (!isLaunched)
         {
             // When space is released, launch
-            if (jumpKey.WasReleasedThisFrame())
+            if (jumpKey.WasReleasedThisFrame() && canLaunch)
             {
                 arrowVisual.enabled = false;
                 inPrep = false;
@@ -239,7 +248,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void Launch()
+    void Launch()
     {
         //Apply Force
         Debug.Log("Launched");
