@@ -211,8 +211,8 @@ MonoBehaviour:
   black: {fileID: 21300000, guid: ff711560689384157b1881feeef0d6f0, type: 3}
   prefabPlayerPuck:
   - {fileID: 7239596911925580646, guid: 18fe4981551978541b1ffcbca125b2f7, type: 3}
-  - {fileID: 6591873835938418777, guid: 8c28bf62d11fe99489975249b00221d5, type: 3}
   - {fileID: 7749019058495466915, guid: 7997a31242fd9b144b42074a4f9e518e, type: 3}
+  - {fileID: 6591873835938418777, guid: 8c28bf62d11fe99489975249b00221d5, type: 3}
   prefabEnemyPuck:
   - {fileID: 1185385775}
   - {fileID: 1486817690}
