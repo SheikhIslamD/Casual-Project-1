@@ -9,12 +9,14 @@ public class LevelManager : MonoBehaviour
     public int turn = 0;
     public int turnMax;
 
+    // Info for End of Level UI
     public int star2Diff, star3Diff;
     Image medal;
     public Sprite gold, silver, bronze, black;
-    public TextMeshProUGUI winText, loseText, scoreText;
+    TextMeshProUGUI resultText, scoreText;
     Canvas inGameCanvas, endCanvas;
 
+    // Arrays to track all active pieces in scene
     public GameObject[] prefabPlayerPuck;
     public GameObject[] prefabEnemyPuck;
 
@@ -27,8 +29,7 @@ public class LevelManager : MonoBehaviour
     }
     public void ScoreRound()
     {
-        //Compare the player score to enemy score
-        //For positive feedback loop maybe use a "star" system. i.e. 1 star for win by 1, 2 starts for win by 2, and 3 for 3+
+        //For positive feedback loop maybe use a "medal" system. i.e. 1 star for win by 1, 2 starts for win by 2, and 3 for 3+
         inGameCanvas.enabled = false;
         endCanvas.enabled = true;
 
@@ -38,32 +39,33 @@ public class LevelManager : MonoBehaviour
         // If player score meets score requirements, allocate stars
         if (ScoreTracker.playerScore >= ScoreTracker.enemyScore)
         {
-            // UI Win Text
-            winText.enabled = true;
-            loseText.enabled = false;
-
             if (ScoreTracker.playerScore - ScoreTracker.enemyScore >= star2Diff)
             {
                 if (ScoreTracker.playerScore - ScoreTracker.enemyScore >= star3Diff)
                 {
-                    // UI 3 star
+                    // UI gold medal
+                    resultText.text = "Amazing!!!";
                     medal.sprite = gold;
+                    return;
                 }
-                // UI 2 star
+                // UI silver medal
+                resultText.text = "Pretty Good!";
                 medal.sprite = silver;
+                return;
             }
-            // UI 1 star
+            // UI bronze medal
+            resultText.text = "Not Bad";
             medal.sprite = bronze;
             return;
         }
 
         // UI lose Text
-        loseText.enabled = true;
-        winText.enabled = false;
+        resultText.text = "Oh No!";
         medal.sprite = black;
         return;
     }
 
+    // Check all pieces in scene and ensure they've stopped moving
     public bool VelocityZero()
     {
         foreach (GameObject dog in prefabEnemyPuck)
@@ -77,6 +79,7 @@ public class LevelManager : MonoBehaviour
         return true;
     }
 
+    // Called once in every scene, gets the components neccessary for script functions
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Calls on Scene Loaded");
@@ -90,8 +93,7 @@ public class LevelManager : MonoBehaviour
         endCanvas.enabled = false;
 
         medal = GameObject.Find("Medal").GetComponent<Image>();
-        winText = GameObject.Find("WinText").GetComponent<TextMeshProUGUI>();
-        loseText = GameObject.Find("LoseText").GetComponent<TextMeshProUGUI>();
+        resultText = GameObject.Find("ResultText").GetComponent<TextMeshProUGUI>();
         scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
     }
 }

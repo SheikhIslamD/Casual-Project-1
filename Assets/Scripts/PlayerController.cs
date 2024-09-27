@@ -12,24 +12,22 @@ public class PlayerController : MonoBehaviour
     AfterLaunchAbility ala;
     LaunchAbility la;
 
-    Canvas arrowVisual;
-    RectTransform arrowScale;
+    public Canvas arrowVisual;
+    public Transform arrowAngle;
+    public RectTransform arrowScale;
 
     GameObject player;
     Rigidbody rb;
 
     public float boardBounds;
 
-    public float force = 20f;
+    float force = 20f;
     float forceRate = 10f;
     float forceMin = 20f;
     float forceMax = 40f;
 
-    public float angle = 180f;
-    float angleRate = 20f;
-    float launchAngle = 1.6f;
-    float directionRate = -0.36f;
-    Vector3 angleApplied = Vector3.forward;
+    float angle = 180f;
+    float angleRate = 30f;
 
     public static bool playing;
     static bool turnStarted;
@@ -45,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        // Establish Inputs
         movementKeys = InputSystem.actions.FindAction("Move");
         jumpKey = InputSystem.actions.FindAction("Jump");            
 
@@ -53,10 +52,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        //Get Level manager from scene
         lm = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
-        
-        arrowScale = GameObject.Find("Aiming Canvas").GetComponent<RectTransform>();
-        arrowVisual = GameObject.Find("Aiming Canvas").GetComponent<Canvas>();
     }
 
     void Update()
@@ -65,6 +62,7 @@ public class PlayerController : MonoBehaviour
         {
             if (inPrep)
             {
+                // Allow player to move and aim arrow swings
                 AimMovement();
             }
 
@@ -96,46 +94,22 @@ public class PlayerController : MonoBehaviour
 
     void AimMovement()
     {
-        // Turn on Arrow UI
-        arrowVisual.enabled = true;
-
-        // Angle for Model & Arrow
-        angle = angle + (angleRate * Time.deltaTime);
-        // Bound for that Angle
-        if (angle <= 125f || angle >= 235f)
-        {
-            angleRate = -angleRate;
-        }
-        // Rotate Model and Arrow
-        rb.transform.rotation = Quaternion.Euler(-90f, angle, 0f);
-        arrowScale.rotation = Quaternion.Euler(90f, 0f, -angle);
-
-        //Adjust launch Angle
-        launchAngle = launchAngle + (directionRate * Time.deltaTime);
-        // Launch Angle Bounds
-        if (launchAngle <= .6f || launchAngle >= 2.57f)
-        {
-            directionRate = -directionRate;
-        }
-        // Launch Angle set to Vector3
-        angleApplied = new Vector3(Mathf.Cos(launchAngle), 0, Mathf.Sin(launchAngle));
-        // Draw Launch Angle
-        Debug.DrawRay(rb.transform.position, angleApplied, Color.green);
+        // Launch Angle visual movements
+        AimingModel();
 
         // Take Input
-        //(old input system) float horizontal = Input.GetAxis("Horizontal");
         float horizontal = movementKeys.ReadValue<Vector2>().x;
 
         // Set Input Bounds
-        if (transform.position.x <= -6.5f || rb.transform.position.x <= -6.5f)
+        if (transform.position.x <= -boardBounds || rb.transform.position.x <= -boardBounds)
         {
-            transform.position = new Vector3(-6.5f, transform.position.y, transform.position.z);
-            rb.transform.position = new Vector3(-6.5f, rb.transform.position.y, rb.transform.position.z);
+            transform.position = new Vector3(-boardBounds, transform.position.y, transform.position.z);
+            rb.transform.position = new Vector3(-boardBounds, rb.transform.position.y, rb.transform.position.z);
         }
-        else if (transform.position.x >= 6.5f || rb.transform.position.x >= 6.5f)
+        else if (transform.position.x >= boardBounds || rb.transform.position.x >= boardBounds)
         {
-            transform.position = new Vector3(6.5f, transform.position.y, transform.position.z);
-            rb.transform.position = new Vector3(6.5f, rb.transform.position.y, rb.transform.position.z);
+            transform.position = new Vector3(boardBounds, transform.position.y, transform.position.z);
+            rb.transform.position = new Vector3(boardBounds, rb.transform.position.y, rb.transform.position.z);
         }
 
         // Move
@@ -145,12 +119,12 @@ public class PlayerController : MonoBehaviour
         // When Space is Held, Charge Force Amount
         if (jumpKey.IsPressed())
         {
+            float charge = -100;
             // Stop Rotation
             angleRate = 0;
-            directionRate = 0;
 
             // Charge
-            force = force + (forceRate * Time.deltaTime);
+            force = force + (forceRate * 2 * Time.deltaTime);
 
             // Flux other direction
             if (force >= forceMax || force <= forceMin)
@@ -158,13 +132,34 @@ public class PlayerController : MonoBehaviour
                 forceRate = -forceRate;
             }
 
+            // Assign Value to charge visual
+            charge = -100 + 5 * (force - 20);
+
             // Arrow Scales with Force
-            arrowScale.sizeDelta = new Vector2(2.8f, 1f + (force / 10));
-            Debug.DrawRay(rb.transform.position, angleApplied * (force / 10), Color.blue);
+            arrowScale.anchoredPosition = new Vector3(0f, charge, 0f);
+
+            Debug.DrawRay(rb.transform.position, rb.transform.up * (force / 10), Color.blue);
         }
 
 
     }
+
+    void AimingModel()
+    {
+        // Turn on Arrow UI
+        arrowVisual.enabled = true;
+
+        // Angle for Model & Arrow
+        angle = angle + (angleRate * Time.deltaTime);
+        // Bound for that Angle
+        if (angle <= 120f || angle >= 240f) angleRate = -angleRate;
+        // Rotate Model and Arrow
+        rb.transform.rotation = Quaternion.Euler(-90f, angle, 0f);
+        arrowAngle.rotation = Quaternion.Euler(180f, angle, 0);
+        // Debug Ray
+        Debug.DrawRay(rb.transform.position, rb.transform.up, Color.green);
+    }
+
     void StartTurn(int turn)
     {
         // Start Turn
@@ -220,7 +215,7 @@ public class PlayerController : MonoBehaviour
             // During launch ability
             if (jumpKey.WasReleasedThisFrame() && hasLaunchAbility) 
             {
-                la.UseLaunchAbility(angleApplied, force);
+                la.UseLaunchAbility(force);
             }
 
             // Detect when puck has stopped
@@ -248,7 +243,7 @@ public class PlayerController : MonoBehaviour
     {
         //Apply Force
         Debug.Log("Launched");
-        rb.AddForce(angleApplied * force, ForceMode.Impulse);
+        rb.AddForce(rb.transform.up * force, ForceMode.Impulse);
         StartCoroutine(DelayCheck());
     }
 
@@ -257,13 +252,10 @@ public class PlayerController : MonoBehaviour
         // Reset variables
         force = forceMin;
         angle = 180f;
-        launchAngle = 1.6f;
-        angleApplied = Vector3.forward;
         angleRate = 20f;
-        directionRate = -0.36f;
 
-        //UI Set for PLACEHOLDER arrow
-        arrowScale.sizeDelta = new Vector2(2.8f, 2.4f);
+        //UI Set for arrow
+        arrowScale.anchoredPosition = new Vector3(0f, -100f, 0f);
 
         // Add to turn count and prep for next turn
         lm.turn += 1;
