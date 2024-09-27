@@ -55,21 +55,41 @@ PrefabInstance:
     - target: {fileID: 2004026998230885546, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 836e90ff0e83a1b49971560c03d6a254, type: 2}
+      objectReference: {fileID: 2100000, guid: 70a8ecec0097a904a9d9943a7bf0bdd7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 58344071952303487, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -8902547371454373982}
+      insertIndex: 5
+      addedObject: {fileID: 1721432938688165825}
+    - targetCorrespondingSourceObject: {fileID: 58344071952303487, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 7255295477332016074}
   m_SourcePrefab: {fileID: 100100000, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
 --- !u!1 &7239596911925580646 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 58344071952303487, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
   m_PrefabInstance: {fileID: 7257393118895494681}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-8902547371454373982
+--- !u!114 &1721432938688165825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7239596911925580646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 865e21d2889ab184f9c33db24ff265d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ability: Sticky
+  stickyCat: {fileID: 2100000, guid: 836e90ff0e83a1b49971560c03d6a254, type: 2}
+  sticky: {fileID: 13400000, guid: 87a76a709b2102f4cb84a38aedd5a545, type: 2}
+  copy: {fileID: 0}
+  clear: {fileID: 0}
+--- !u!114 &7255295477332016074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,3 +101,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a4dd3a057149f4e84c27034c6a917e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stickActive: 0
+  sticky: {fileID: 13400000, guid: 87a76a709b2102f4cb84a38aedd5a545, type: 2}

@@ -10,6 +10,9 @@ public class LaunchAbility : MonoBehaviour
     float launchForce;
     Vector3 launchAngle;
 
+    public Material stickyCat;
+    public PhysicsMaterial sticky;
+
     public GameObject copy;
     public static bool canDestroy;
 
@@ -29,6 +32,10 @@ public class LaunchAbility : MonoBehaviour
                 // Double Dash
                 case "Zoom":
                     Zoom();
+                    break;
+                // Double Dash
+                case "Sticky":
+                    Sticky();
                     break;
                 // Spawn temporary clones 
                 case "Multiply":
@@ -50,6 +57,15 @@ public class LaunchAbility : MonoBehaviour
         // Apply a second launch to piece
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.AddForce(rb.transform.up * launchForce, ForceMode.Impulse);
+    }
+
+    void Sticky()
+    {
+        hasTriggered = true;
+        GetComponent<StickyCat>().stickActive = true;
+        // Apply a really high friction material to object, it and anything that makes contact with it will get stuck
+        GetComponent<Renderer>().material = stickyCat;
+        GetComponent<Collider>().material = sticky;
     }
 
     void Multiply()

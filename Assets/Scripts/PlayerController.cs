@@ -21,9 +21,9 @@ public class PlayerController : MonoBehaviour
 
     public float boardBounds;
 
-    float force = 10f;
+    float force = 20f;
     float forceRate = 10f;
-    float forceMin = 10f;
+    float forceMin = 20f;
     float forceMax = 40f;
 
     float angle = 180f;
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // Assign Value to charge visual
-            charge = -100 + 3.333f * (force - 10);
+            charge = -100 + 5 * (force - 20);
 
             // Arrow Scales with Force
             arrowScale.anchoredPosition = new Vector3(0f, charge, 0f);
