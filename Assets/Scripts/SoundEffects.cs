@@ -3,10 +3,14 @@ using UnityEngine;
 public class SoundEffects : MonoBehaviour
 {
     [Header("Sounds go here")]
-    public AudioClip slip;
+    public AudioClip slide;
     public AudioClip bonk;
     public AudioClip boom;
+    public AudioClip blink;
+    public AudioClip ambience;
+    public AudioClip bgm;
     public AudioClip[] meows;
+    public AudioClip[] barks;
 
     [SerializeField] private AudioSource soundObject;
     //this makes this script into a singleton - meaning only one of this can exist at a time and any script can now call this by just doing SoundEffects.instance... very epic

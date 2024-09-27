@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class SoundEffectTrigger : MonoBehaviour
 {
+    public bool gravityCollision = false;
+
     //All trigger scenarios for any object that this script is attached to, to react accordingly
     //Tags are super important here
     private void OnCollisionEnter(Collision collision)
@@ -24,8 +26,14 @@ public class SoundEffectTrigger : MonoBehaviour
         {
             //vineboom on cats hitting it
             if (collision.gameObject.CompareTag("Player Piece"))
-            SoundEffects.instance.PlaySoundEffect(SoundEffects.instance.boom, transform, 1, transform);
+            SoundEffects.instance.PlaySoundEffectRandom(SoundEffects.instance.barks, transform, 1, transform);
             Debug.Log("A cat hit a dog... BOOM");
+        }
+
+        // Detection To Stop Gravity Jitter
+        if (AfterLaunchAbility.active)
+        {
+            gravityCollision = true;
         }
     }
 }

@@ -3,15 +3,20 @@ using UnityEngine.Audio;
 
 public class StickyCat : MonoBehaviour
 {
+    public bool stickActive;
+    public PhysicsMaterial sticky;
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Contact made with ");
-        Debug.Log(collision.collider);
-        if (collision.collider.CompareTag("Player Piece") || collision.collider.CompareTag("Enemy Piece"))
+        if (stickActive)
         {
-            Debug.Log("Assigning joint");
-            collision.gameObject.AddComponent<FixedJoint>();
-            collision.gameObject.GetComponent<FixedJoint>().connectedBody = this.GetComponent<Rigidbody>();
+            Debug.Log("Contact made with Sticky");
+
+            if (collision.collider.CompareTag("Player Piece") || collision.collider.CompareTag("Enemy Piece"))
+            {
+                Debug.Log("Giving new material");
+                Collider col = collision.collider;
+                col.material = sticky;
+            }
         }
     }
 }
