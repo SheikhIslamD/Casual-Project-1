@@ -200,7 +200,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8309122}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1733175615}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1733175615}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: playButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8309122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,7 +281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &59479959
 RectTransform:
   m_ObjectHideFlags: 0
@@ -275,8 +299,8 @@ RectTransform:
   - {fileID: 763471263}
   - {fileID: 1357858333}
   - {fileID: 381340468}
-  - {fileID: 8309120}
   - {fileID: 102362564}
+  - {fileID: 8309120}
   m_Father: {fileID: 1733175614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -359,7 +383,6 @@ GameObject:
   - component: {fileID: 102362568}
   - component: {fileID: 102362567}
   - component: {fileID: 102362566}
-  - component: {fileID: 102362565}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -387,20 +410,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -152}
   m_SizeDelta: {x: 320, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &102362565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 102362563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6d772e1edaa540afa078df33d1b38d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetCanvas: {fileID: 0}
-  previousCanvas: {fileID: 59479958}
 --- !u!114 &102362566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,9 +454,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 102362565}
-        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
-        m_MethodName: ShowCanvas
+      - m_Target: {fileID: 1733175615}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: MainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1733175615}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: playButtonSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -639,9 +660,8 @@ GameObject:
   - component: {fileID: 381340472}
   - component: {fileID: 381340471}
   - component: {fileID: 381340470}
-  - component: {fileID: 381340469}
   m_Layer: 5
-  m_Name: Controls
+  m_Name: Catalogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -667,20 +687,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -42}
   m_SizeDelta: {x: 320, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &381340469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381340467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6d772e1edaa540afa078df33d1b38d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetCanvas: {fileID: 0}
-  previousCanvas: {fileID: 59479958}
 --- !u!114 &381340470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,9 +731,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 381340469}
-        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
-        m_MethodName: ShowCanvas
+      - m_Target: {fileID: 1733175615}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: Catalogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1733175615}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: playButtonSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1671,17 +1689,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 763471262}
   m_CullTransparentMesh: 1
---- !u!114 &771272401 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8794492815011873889, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
-  m_PrefabInstance: {fileID: 1733175613}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &784458653 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8767424149964891559, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
@@ -2285,7 +2292,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1733175613}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -2313,7 +2320,7 @@ PrefabInstance:
     - target: {fileID: 3686494589422432928, guid: f77fb2f2a5e33394eb6632a4461033e9, type: 3}
       propertyPath: loseText
       value: 
-      objectReference: {fileID: 771272401}
+      objectReference: {fileID: 0}
     - target: {fileID: 3686494589422432928, guid: f77fb2f2a5e33394eb6632a4461033e9, type: 3}
       propertyPath: endScreen
       value: 
@@ -2332,7 +2339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3686494589422432928, guid: f77fb2f2a5e33394eb6632a4461033e9, type: 3}
       propertyPath: prefabPlayerPuck.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3686494589422432928, guid: f77fb2f2a5e33394eb6632a4461033e9, type: 3}
       propertyPath: 'prefabEnemyPuck.Array.data[0]'
@@ -2361,7 +2368,7 @@ PrefabInstance:
     - target: {fileID: 3686494589422432928, guid: f77fb2f2a5e33394eb6632a4461033e9, type: 3}
       propertyPath: 'prefabPlayerPuck.Array.data[1]'
       value: 
-      objectReference: {fileID: 3929998242236406031, guid: f64deda957efaaa4999aa4099b1dcef9, type: 3}
+      objectReference: {fileID: 5765186643443262178, guid: 88b7792c51c0a1a43a9147a479368dcb, type: 3}
     - target: {fileID: 3686494589422432928, guid: f77fb2f2a5e33394eb6632a4461033e9, type: 3}
       propertyPath: 'prefabPlayerPuck.Array.data[2]'
       value: 
@@ -2706,7 +2713,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1357858335}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1733175615}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1733175615}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: playButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1357858335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3502,9 +3533,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tunacanSound: {fileID: 0}
+  blink: {fileID: 0}
   audioSource: {fileID: 0}
-  newSceneName: First Build Scene
   currentSceneRoot: {fileID: 2007401739}
+  whereTo: 
 --- !u!1 &1594118885
 GameObject:
   m_ObjectHideFlags: 0
@@ -3562,7 +3594,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Controls
+  m_text: Cat-alogue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01355204c01ba499ca2f24f9673f2f4a, type: 2}
   m_sharedMaterial: {fileID: -3160445685703574734, guid: 01355204c01ba499ca2f24f9673f2f4a, type: 2}
@@ -3866,6 +3898,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Core Game Objects
       objectReference: {fileID: 0}
+    - target: {fileID: 4898978202183273164, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 59479958}
+    - target: {fileID: 4898978202183273164, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
+      propertyPath: pauseScreen
+      value: 
+      objectReference: {fileID: 59479958}
+    - target: {fileID: 4898978202183273164, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
+      propertyPath: cataloguePopup
+      value: 
+      objectReference: {fileID: 381340467}
     - target: {fileID: 5678767026918892378, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3919,6 +3963,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 725645419638025957, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
   m_PrefabInstance: {fileID: 1733175613}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1733175615 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4898978202183273164, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
+  m_PrefabInstance: {fileID: 1733175613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a85cc559c7c6c8443925d6d4a94da2b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1749252835
 GameObject:
   m_ObjectHideFlags: 0
@@ -4066,9 +4121,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tunacanSound: {fileID: 0}
+  blink: {fileID: 0}
   audioSource: {fileID: 0}
-  newSceneName: Test Level 2
   currentSceneRoot: {fileID: 2007401739}
+  whereTo: 
 --- !u!1 &1759165933 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5564769473155496931, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
@@ -4322,9 +4378,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tunacanSound: {fileID: 0}
+  blink: {fileID: 0}
   audioSource: {fileID: 0}
-  newSceneName: UI Main Menu
   currentSceneRoot: {fileID: 2007401739}
+  whereTo: 
 --- !u!1 &1875972374
 GameObject:
   m_ObjectHideFlags: 0

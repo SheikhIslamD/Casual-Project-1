@@ -20,6 +20,9 @@ public class LevelManager : MonoBehaviour
     public GameObject[] prefabPlayerPuck;
     public GameObject[] prefabEnemyPuck;
 
+    //public static variable to let other scripts know that level is over
+    public static bool levelOver = false;
+
     private void Awake()
     {
         turnMax = prefabPlayerPuck.Length;
@@ -62,6 +65,7 @@ public class LevelManager : MonoBehaviour
         // UI lose Text
         resultText.text = "Oh No!";
         medal.sprite = black;
+        levelOver = true;
         return;
     }
 
@@ -83,6 +87,7 @@ public class LevelManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Calls on Scene Loaded");
+        levelOver = false;
         turn = 0;
         PlayerController.playing = true;
 
