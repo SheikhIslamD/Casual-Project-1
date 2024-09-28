@@ -29,6 +29,10 @@ public class SceneHandler : MonoBehaviour
             case "Next":
                 //+1 to the build index will play next scene in build index order
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                if (SceneManager.GetActiveScene().buildIndex == 4)
+                {
+                    SceneManager.LoadScene(0);
+                }
                 break;
             case "Quit":
                 Application.Quit();
@@ -54,5 +58,10 @@ public class SceneHandler : MonoBehaviour
     public void PlayMenuSound()
     {
         audioSource.PlayOneShot(tunacanSound);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

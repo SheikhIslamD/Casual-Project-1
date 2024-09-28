@@ -88,8 +88,20 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("Calls on Scene Loaded");
         levelOver = false;
+        //recount the array to have the right turns
+        turnMax = prefabPlayerPuck.Length;
         turn = 0;
         PlayerController.playing = true;
+        Debug.Log("playing state set");
+
+        if (SceneManager.GetActiveScene().name != "Intro")
+        {
+            Debug.Log("this is a non-intro scene, allowing all play variables");
+            PlayerController.doneIntro = true;
+            PlayerController.canMove = true;
+            PlayerController.canAim = true;
+            PlayerController.canLaunch = true;
+        }
 
         inGameCanvas = GameObject.Find("HUD").GetComponent<Canvas>();
         endCanvas = GameObject.Find("End Screen").GetComponent<Canvas>();
