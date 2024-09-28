@@ -8,15 +8,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI Main Menu.unity
     guid: a2aabfaf0c9084621baacfbee11634c7
+  - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: 1a7290b1bacf88f4d937d4b2a0218e70
   - enabled: 0
     path: Assets/Scenes/Office.unity
     guid: 2929052532bfb884fa6a4c03b2a301eb
-  - enabled: 0
-    path: Assets/Scenes/Living Room.unity
-    guid: 19286b03bc4211a4f9df5859988535ec
-  - enabled: 0
-    path: Assets/Scenes/Dining.unity
-    guid: 599d19f70f0ca5841a02b2403b6c4730
+  - enabled: 1
+    path: Assets/Scenes/AidanVariousTestScenes/z_Gravity.unity
+    guid: ccac3d0e1778b884288c26e42ee0b3d1
+  - enabled: 1
+    path: Assets/Scenes/AidanVariousTestScenes/z_Obstacles.unity
+    guid: 3ccdbb3692191f5439d6b2a91d619bab
+  - enabled: 1
+    path: Assets/Scenes/AidanVariousTestScenes/z_powers.unity
+    guid: 3ea30b75162c4d747a02a42360fd685f
   - enabled: 0
     path: Assets/Scenes/First Build Test.unity
     guid: d23996dbe2585f34fbe04ef3d2038037
@@ -29,18 +35,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/AidanVariousTestScenes/Aidan Debugging.unity
     guid: 5674cd26048fb274d8bc9b7d9f69ae26
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AidanVariousTestScenes/z_IntroScene.unity
     guid: 2a239dd0a03ae7f4b96c892f3e7e0aee
-  - enabled: 1
-    path: Assets/Scenes/AidanVariousTestScenes/z_Gravity.unity
-    guid: ccac3d0e1778b884288c26e42ee0b3d1
-  - enabled: 1
-    path: Assets/Scenes/AidanVariousTestScenes/z_powers.unity
-    guid: 3ea30b75162c4d747a02a42360fd685f
-  - enabled: 1
-    path: Assets/Scenes/AidanVariousTestScenes/z_Obstacles.unity
-    guid: 3ccdbb3692191f5439d6b2a91d619bab
+  - enabled: 0
+    path: Assets/Scenes/Living Room.unity
+    guid: 19286b03bc4211a4f9df5859988535ec
+  - enabled: 0
+    path: Assets/Scenes/Dining.unity
+    guid: 599d19f70f0ca5841a02b2403b6c4730
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
