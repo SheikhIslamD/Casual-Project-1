@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class ScoreTracker : MonoBehaviour
 {
-    //Testing a Github thing
     //Current flow of game data: 
     //ScoreZone counts scores -> stores them in ScoreTracker + tells ScoreTracker to update
     //ScoreTracker stores the counted scores + gets told to update -> tells UI to update
