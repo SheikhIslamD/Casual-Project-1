@@ -34,6 +34,9 @@ public class SceneHandler : MonoBehaviour
                     SceneManager.LoadScene(0);
                 }
                 break;
+            case "Gacha":
+                SceneManager.LoadScene("GachaScene");
+                break;
             case "Quit":
                 Application.Quit();
                 break;
