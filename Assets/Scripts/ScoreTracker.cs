@@ -13,6 +13,8 @@ public class ScoreTracker : MonoBehaviour
     public string currentScene;
     public UI UI;
 
+    public static int hatChoice;
+
 
     //[Header("Autoassigned per-level")]
     //[SerializeField] ScoreZone scoreZone;

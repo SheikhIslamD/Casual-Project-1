@@ -94,13 +94,16 @@ public class LevelManager : MonoBehaviour
         PlayerController.playing = true;
         Debug.Log("playing state set");
 
-        if (SceneManager.GetActiveScene().name != "Intro")
+        if (SceneManager.GetActiveScene().name != "Intro" )
         {
+            if (SceneManager.GetActiveScene().name != "Introduction")
+            {
             Debug.Log("this is a non-intro scene, allowing all play variables");
             PlayerController.doneIntro = true;
             PlayerController.canMove = true;
             PlayerController.canAim = true;
             PlayerController.canLaunch = true;
+            }
         }
 
         inGameCanvas = GameObject.Find("HUD").GetComponent<Canvas>();
