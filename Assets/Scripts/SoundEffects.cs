@@ -9,8 +9,13 @@ public class SoundEffects : MonoBehaviour
     public AudioClip blink;
     public AudioClip ambience;
     public AudioClip bgm;
+    public AudioClip pickup;
+
     public AudioClip[] meows;
     public AudioClip[] barks;
+
+    public AudioSource musicSource;
+    
 
     [SerializeField] private AudioSource soundObject;
     //this makes this script into a singleton - meaning only one of this can exist at a time and any script can now call this by just doing SoundEffects.instance... very epic
@@ -22,6 +27,8 @@ public class SoundEffects : MonoBehaviour
         {
             instance = this;
         }
+        //play bgm
+        musicSource.Play();
     }
 
     //this is the function that other scripts will use to play effects

@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     //hats system
     //public MeshFilter[] hatFilter;
     //public Mesh[] hatModels;
-    public int hatEquipped;
+    public static int hatEquipped;
     public GameObject[] hats;
 
     private void Awake()

@@ -8,19 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI Main Menu.unity
     guid: a2aabfaf0c9084621baacfbee11634c7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Intro.unity
     guid: 1a7290b1bacf88f4d937d4b2a0218e70
   - enabled: 0
     path: Assets/Scenes/Office.unity
     guid: 2929052532bfb884fa6a4c03b2a301eb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AidanVariousTestScenes/z_Gravity.unity
     guid: ccac3d0e1778b884288c26e42ee0b3d1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AidanVariousTestScenes/z_Obstacles.unity
     guid: 3ccdbb3692191f5439d6b2a91d619bab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AidanVariousTestScenes/z_powers.unity
     guid: 3ea30b75162c4d747a02a42360fd685f
   - enabled: 0
@@ -44,6 +44,21 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Dining.unity
     guid: 599d19f70f0ca5841a02b2403b6c4730
+  - enabled: 1
+    path: Assets/Scenes/Build Scenes/Introduction.unity
+    guid: fcaaf1dbcbe579446a132a570362efc6
+  - enabled: 1
+    path: Assets/Scenes/Build Scenes/Bedroom.unity
+    guid: a6994e3dd00d4304da70c64381375ba7
+  - enabled: 1
+    path: Assets/Scenes/Build Scenes/Living.unity
+    guid: 9d301f99fcfe0c9469d2baaa605586fe
+  - enabled: 1
+    path: Assets/Scenes/Build Scenes/Dining.unity
+    guid: f05444da2dc04704283de0a44bd455fb
+  - enabled: 1
+    path: Assets/Scenes/GachaScene.unity
+    guid: e72b717b7de1fc54386cd10c887b91e1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
