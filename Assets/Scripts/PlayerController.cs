@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     AfterLaunchAbility ala;
     LaunchAbility la;
 
+    public static int tunaPoints; 
+
     public Canvas arrowVisual;
     public Transform arrowAngle;
     public RectTransform arrowScale;
