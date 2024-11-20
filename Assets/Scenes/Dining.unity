@@ -1326,17 +1326,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757403918}
   m_CullTransparentMesh: 1
---- !u!114 &771272401 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8794492815011873889, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
-  m_PrefabInstance: {fileID: 1733175613}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &784458653 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8767424149964891559, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
@@ -2660,7 +2649,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1733175613}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -2688,7 +2677,7 @@ PrefabInstance:
     - target: {fileID: 3686494589422432928, guid: f77fb2f2a5e33394eb6632a4461033e9, type: 3}
       propertyPath: loseText
       value: 
-      objectReference: {fileID: 771272401}
+      objectReference: {fileID: 0}
     - target: {fileID: 3686494589422432928, guid: f77fb2f2a5e33394eb6632a4461033e9, type: 3}
       propertyPath: endScreen
       value: 
@@ -4201,9 +4190,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tunacanSound: {fileID: 0}
+  blink: {fileID: 0}
   audioSource: {fileID: 0}
-  newSceneName: First Build Scene
   currentSceneRoot: {fileID: 2007401739}
+  whereTo: 
 --- !u!1001 &1629051399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4874,9 +4864,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tunacanSound: {fileID: 0}
+  blink: {fileID: 0}
   audioSource: {fileID: 0}
-  newSceneName: Test Level 2
   currentSceneRoot: {fileID: 2007401739}
+  whereTo: 
 --- !u!1 &1759165933 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5564769473155496931, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
@@ -5095,9 +5086,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tunacanSound: {fileID: 0}
+  blink: {fileID: 0}
   audioSource: {fileID: 0}
-  newSceneName: UI Main Menu
   currentSceneRoot: {fileID: 2007401739}
+  whereTo: 
 --- !u!1 &1875972374
 GameObject:
   m_ObjectHideFlags: 0
