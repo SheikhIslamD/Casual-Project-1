@@ -304,6 +304,10 @@ MonoBehaviour:
   turnMax: 0
   star2Diff: 1
   star3Diff: 2
+  gold: {fileID: 0}
+  silver: {fileID: 0}
+  bronze: {fileID: 0}
+  black: {fileID: 0}
   prefabPlayerPuck:
   - {fileID: 58344071952303487, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
   - {fileID: 58344071952303487, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
@@ -2335,8 +2339,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fca2303bc90b4afa98c7d70230af7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newSceneName: First Build Scene
+  tunacanSound: {fileID: 0}
+  blink: {fileID: 0}
+  audioSource: {fileID: 0}
   currentSceneRoot: {fileID: 2007401739}
+  whereTo: 
 --- !u!1001 &1629051399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2753,8 +2760,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fca2303bc90b4afa98c7d70230af7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newSceneName: Test Level 2
+  tunacanSound: {fileID: 0}
+  blink: {fileID: 0}
+  audioSource: {fileID: 0}
   currentSceneRoot: {fileID: 2007401739}
+  whereTo: 
 --- !u!1 &1800210566 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4305207569476479301, guid: b1bd9f50dcdee0a419e219214948b81d, type: 3}
@@ -2927,8 +2937,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fca2303bc90b4afa98c7d70230af7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newSceneName: UI Main Menu
+  tunacanSound: {fileID: 0}
+  blink: {fileID: 0}
+  audioSource: {fileID: 0}
   currentSceneRoot: {fileID: 2007401739}
+  whereTo: 
 --- !u!1 &1875972374
 GameObject:
   m_ObjectHideFlags: 0
