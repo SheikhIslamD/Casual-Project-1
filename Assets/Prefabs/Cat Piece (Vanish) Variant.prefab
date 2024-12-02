@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cat Piece (Vanish) Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 58344071952303487, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 829954477879975877, guid: 814cdc342fbaf614c9f193a00f05bd7c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -82,5 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ability: Vanish
+  stickyCat: {fileID: 0}
+  sticky: {fileID: 0}
   copy: {fileID: 0}
   clear: {fileID: 2100000, guid: 21aea1341f88d2549a356c7d109f4331, type: 2}

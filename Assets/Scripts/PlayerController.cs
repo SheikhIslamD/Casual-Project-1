@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEditor;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
@@ -48,6 +49,12 @@ public class PlayerController : MonoBehaviour
 
     InputAction movementKeys;
     InputAction jumpKey;
+
+    //hats system
+    //public MeshFilter[] hatFilter;
+    //public Mesh[] hatModels;
+    public static int hatEquipped;
+    public GameObject[] hats;
 
     private void Awake()
     {
@@ -191,6 +198,13 @@ public class PlayerController : MonoBehaviour
             rb = player.GetComponent<Rigidbody>();
             ala = player.GetComponent<AfterLaunchAbility>();
             la = player.GetComponent<LaunchAbility>();
+
+            //apply hats
+            //hatFilter = player.GetComponentsInChildren<MeshFilter>();
+            //hatFilter[1].mesh = hatModels[hatEquipped];
+
+            Transform[] hatTransform = player.GetComponentsInChildren<Transform>();
+            GameObject newHat = Instantiate(hats[hatEquipped], hatTransform[1]);
 
             Debug.Log("Puck spawned, name is:" + lm.prefabPlayerPuck[num].name);
 

@@ -7,6 +7,7 @@ public class TunaPickup : MonoBehaviour
         if (other.tag == "Player Piece")
         {
             PlayerController.tunaPoints++;
+            SoundEffects.instance.PlaySoundEffect(SoundEffects.instance.pickup, transform, 1, transform);
             Destroy(gameObject);
         }
     }
