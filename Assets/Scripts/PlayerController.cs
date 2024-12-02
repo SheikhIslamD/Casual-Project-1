@@ -75,7 +75,10 @@ public class PlayerController : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         //Get Level manager from scene
+        if (SceneManager.GetActiveScene().name != "GachaSceneBuild")
+        {
         lm = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
+        }
     }
 
     void Update()

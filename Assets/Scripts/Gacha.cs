@@ -8,6 +8,10 @@ public class Gacha : MonoBehaviour
     [SerializeField] TextMeshProUGUI currency;
     [SerializeField] TextMeshProUGUI yourRoll;
     [SerializeField] PlayerController playerController;
+    public GameObject mainCam;
+    public GameObject eventSystem;
+    //help me
+
 
     /*    private void Awake()
         {
@@ -27,15 +31,39 @@ public class Gacha : MonoBehaviour
 
     public void Start()
     {
-        playerController = GameObject.Find("Player Launcher").GetComponent<PlayerController>();
+        if (playerController == null)
+        {
+            playerController = GameObject.Find("Player Launcher").GetComponent<PlayerController>();
+            if (playerController == null)
+            {
+            camSetup();
+            }
+            else
+            {
+            mainCam.SetActive(false);
+            eventSystem.SetActive(false);
+            }
+            
+                currency.text = PlayerController.tunaPoints.ToString();
+        }
+        
+    }
+
+    public void camSetup()
+    {
+            mainCam.SetActive(true);
+            eventSystem.SetActive(true);
+
     }
 
     public void Roll()
     {
         Debug.Log("Pulling time! Good luck!");
         PlayerController.tunaPoints--;
+        currency.text = PlayerController.tunaPoints.ToString();
+        
         int random = Random.Range(0, 4);
         playerController.hatsUnlocked[random] = true;
-        yourRoll.text = "You unlocked the " + playerController.hats[random].GetComponent<MeshRenderer>().enabled + " hat!";
+        yourRoll.text = "You unlocked the " + playerController.hats[random].name + " hat!";
     }
 }
