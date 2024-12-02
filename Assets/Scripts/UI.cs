@@ -114,7 +114,7 @@ public class UI : MonoBehaviour
     public void SwapHats()
     {
         PlayerController.hatEquipped++;
-        if (PlayerController.hatEquipped >= 2)
+        if (PlayerController.hatEquipped >= 4)
         {
             PlayerController.hatEquipped = 0;
         }

@@ -7954,6 +7954,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5678767026918892378}
     m_Modifications:
+    - target: {fileID: 712260849039335036, guid: 93e559f11d5028f42b12dce286b8e849, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1178332789449670722, guid: 93e559f11d5028f42b12dce286b8e849, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -7968,7 +7972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3304937659991902347, guid: 93e559f11d5028f42b12dce286b8e849, type: 3}
       propertyPath: hats.Array.size
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3304937659991902347, guid: 93e559f11d5028f42b12dce286b8e849, type: 3}
       propertyPath: 'hats.Array.data[0]'
@@ -7981,7 +7985,15 @@ PrefabInstance:
     - target: {fileID: 3304937659991902347, guid: 93e559f11d5028f42b12dce286b8e849, type: 3}
       propertyPath: 'hats.Array.data[2]'
       value: 
-      objectReference: {fileID: 4800686242251371261, guid: 38217e44a9ecd124289184160e2bee96, type: 3}
+      objectReference: {fileID: 7470162663643459548, guid: f23b41a126bcacf4f93dcf8b4e3b73ce, type: 3}
+    - target: {fileID: 3304937659991902347, guid: 93e559f11d5028f42b12dce286b8e849, type: 3}
+      propertyPath: 'hats.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2364556461339253772, guid: e8dd95ed308621e488500a062fb9067e, type: 3}
+    - target: {fileID: 3304937659991902347, guid: 93e559f11d5028f42b12dce286b8e849, type: 3}
+      propertyPath: 'hats.Array.data[4]'
+      value: 
+      objectReference: {fileID: 7533826045891455452, guid: d65e5863ad27647468aca548ccd128e9, type: 3}
     - target: {fileID: 4077706019202254030, guid: 93e559f11d5028f42b12dce286b8e849, type: 3}
       propertyPath: m_Name
       value: Player Launcher
