@@ -1,9 +1,10 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Gacha : MonoBehaviour
 {
-    [SerializeField] PlayerController playerController;
     [SerializeField] TextMeshProUGUI currency;
 
     private void Awake()
@@ -16,8 +17,8 @@ public class Gacha : MonoBehaviour
         Debug.Log("Calls on Scene Loaded");
         if (SceneManager.GetActiveScene().name == "GachaSceneBuild")
         {
-            currency = GameObject.Find
-            currency.text = playerController.tunaPoints;
+            //currency = GameObject.Find
+            currency.text = PlayerController.tunaPoints.ToString();
         }
 
     }
