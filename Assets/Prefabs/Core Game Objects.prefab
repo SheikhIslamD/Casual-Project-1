@@ -7994,6 +7994,10 @@ PrefabInstance:
       propertyPath: 'hats.Array.data[4]'
       value: 
       objectReference: {fileID: 7533826045891455452, guid: d65e5863ad27647468aca548ccd128e9, type: 3}
+    - target: {fileID: 3304937659991902347, guid: 93e559f11d5028f42b12dce286b8e849, type: 3}
+      propertyPath: hatsUnlocked.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4077706019202254030, guid: 93e559f11d5028f42b12dce286b8e849, type: 3}
       propertyPath: m_Name
       value: Player Launcher

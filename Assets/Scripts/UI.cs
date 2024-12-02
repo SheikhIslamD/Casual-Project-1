@@ -119,14 +119,21 @@ public class UI : MonoBehaviour
             PlayerController.hatEquipped = 0;
         }
     }
+    public void Skip()
+    {
+        PlayerController.canMove = true;
+        PlayerController.canAim = true;
+        PlayerController.canLaunch = true;
+        PlayerController.doneIntro = true;
+    }
 
 
 
-/* this was for prototype testing
-    [Header("For Testing")]
-    public GameObject playerPiece;
-    public GameObject enemyPiece;
-    public Transform piecePlacement;*/
+    /* this was for prototype testing
+        [Header("For Testing")]
+        public GameObject playerPiece;
+        public GameObject enemyPiece;
+        public Transform piecePlacement;*/
 
     /* this was for prototype testing
     public void MakePlayerPiece()

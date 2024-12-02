@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     //public Mesh[] hatModels;
     public static int hatEquipped;
     public GameObject[] hats;
+    public bool[] hatsUnlocked;
 
     private void Awake()
     {
@@ -63,6 +64,12 @@ public class PlayerController : MonoBehaviour
         jumpKey = InputSystem.actions.FindAction("Jump");            
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        Debug.Log("hide all hats behind gacha MUAHAHAHAA");
+        foreach (var hatUnlocked in hatsUnlocked) 
+        {
+            hatUnlocked.Equals(false);
+        }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -205,6 +212,11 @@ public class PlayerController : MonoBehaviour
 
             Transform[] hatTransform = player.GetComponentsInChildren<Transform>();
             GameObject newHat = Instantiate(hats[hatEquipped], hatTransform[1]);
+            newHat.GetComponent<MeshRenderer>().enabled = false;
+            if (hatsUnlocked[hatEquipped])
+            {
+                newHat.GetComponent<MeshRenderer>().enabled = true;
+            }
 
             Debug.Log("Puck spawned, name is:" + lm.prefabPlayerPuck[num].name);
 
