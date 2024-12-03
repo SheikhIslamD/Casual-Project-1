@@ -3676,6 +3676,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229652651}
   m_CullTransparentMesh: 1
+--- !u!1001 &1331362852
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.1938195
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.2621803
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9311101
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.29357782
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.20642212
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.06508463
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649465386921225237, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_Name
+      value: Tuna Pickup
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
 --- !u!1 &1354210162
 GameObject:
   m_ObjectHideFlags: 0
@@ -5410,6 +5467,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &1889523308
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.2621803
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9311101
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.29357782
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.20642212
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.06508463
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619978025831652369, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649465386921225237, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
+      propertyPath: m_Name
+      value: Tuna Pickup (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c962c62f7e1103a489e9e871d79210b8, type: 3}
 --- !u!1 &1909310014
 GameObject:
   m_ObjectHideFlags: 0
@@ -6491,3 +6605,5 @@ SceneRoots:
   - {fileID: 1675108361}
   - {fileID: 1550444838}
   - {fileID: 2049221751}
+  - {fileID: 1331362852}
+  - {fileID: 1889523308}

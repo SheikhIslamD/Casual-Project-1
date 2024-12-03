@@ -29,13 +29,13 @@ public class SceneHandler : MonoBehaviour
             case "Next":
                 //+1 to the build index will play next scene in build index order
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-                if (SceneManager.GetActiveScene().buildIndex == 4)
+                if (SceneManager.GetActiveScene().buildIndex == 6)
                 {
                     SceneManager.LoadScene(0);
                 }
                 break;
             case "Gacha":
-                SceneManager.LoadScene("GachaScene");
+                SceneManager.LoadScene("GachaSceneBuild");
                 break;
             case "Quit":
                 Application.Quit();
