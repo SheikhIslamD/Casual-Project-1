@@ -91,7 +91,10 @@ public class LevelManager : MonoBehaviour
         //recount the array to have the right turns
         turnMax = prefabPlayerPuck.Length;
         turn = 0;
-        PlayerController.playing = true;
+        if (PlayerController.doneIntro)
+        {
+            PlayerController.playing = true;
+        }
         Debug.Log("playing state set");
 
         if (SceneManager.GetActiveScene().name != "Intro" )

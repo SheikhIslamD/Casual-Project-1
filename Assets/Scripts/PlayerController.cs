@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     float angle = 180f;
     float angleRate = 30f;
 
-    public static bool playing;
+    public static bool playing = false;
     static bool turnStarted;
     public static bool inPrep;
     static bool isLaunched;
@@ -40,9 +40,9 @@ public class PlayerController : MonoBehaviour
 
     // Stuff for the Intro Scene
     public static bool doneIntro;
-    public static bool canMove;
-    public static bool canAim;
-    public static bool canLaunch;
+    public static bool canMove = false;
+    public static bool canAim = false;
+    public static bool canLaunch = false;
 
     public static bool hasLaunchAbility = false;
     public static bool hasAfterAbility = false;
