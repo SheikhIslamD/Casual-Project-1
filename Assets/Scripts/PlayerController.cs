@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     GameObject player;
     Rigidbody rb;
 
-    public float boardBounds;
+    
 
     float force = 20f;
     float forceRate = 10f;
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     float angle = 180f;
     float angleRate = 30f;
 
-    public static bool playing;
+    public static bool playing = false;
     static bool turnStarted;
     public static bool inPrep;
     static bool isLaunched;
@@ -40,9 +40,9 @@ public class PlayerController : MonoBehaviour
 
     // Stuff for the Intro Scene
     public static bool doneIntro;
-    public static bool canMove;
-    public static bool canAim;
-    public static bool canLaunch;
+    public static bool canMove = false;
+    public static bool canAim = false;
+    public static bool canLaunch = false;
 
     public static bool hasLaunchAbility = false;
     public static bool hasAfterAbility = false;
@@ -129,15 +129,15 @@ public class PlayerController : MonoBehaviour
         float horizontal = movementKeys.ReadValue<Vector2>().x;
 
         // Set Input Bounds
-        if (transform.position.x <= -boardBounds || rb.transform.position.x <= -boardBounds)
+        if (transform.position.x <= -lm.boardBounds || rb.transform.position.x <= -lm.boardBounds)
         {
-            transform.position = new Vector3(-boardBounds, transform.position.y, transform.position.z);
-            rb.transform.position = new Vector3(-boardBounds, rb.transform.position.y, rb.transform.position.z);
+            transform.position = new Vector3(-lm.boardBounds, transform.position.y, transform.position.z);
+            rb.transform.position = new Vector3(-lm.boardBounds, rb.transform.position.y, rb.transform.position.z);
         }
-        else if (transform.position.x >= boardBounds || rb.transform.position.x >= boardBounds)
+        else if (transform.position.x >= lm.boardBounds || rb.transform.position.x >= lm.boardBounds)
         {
-            transform.position = new Vector3(boardBounds, transform.position.y, transform.position.z);
-            rb.transform.position = new Vector3(boardBounds, rb.transform.position.y, rb.transform.position.z);
+            transform.position = new Vector3(lm.boardBounds, transform.position.y, transform.position.z);
+            rb.transform.position = new Vector3(lm.boardBounds, rb.transform.position.y, rb.transform.position.z);
         }
 
         // Move

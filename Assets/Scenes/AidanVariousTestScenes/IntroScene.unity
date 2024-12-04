@@ -370,7 +370,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!1 &118406876
 GameObject:
@@ -691,7 +691,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!1 &215201276
 GameObject:
@@ -1317,11 +1317,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 442839281}
   m_CullTransparentMesh: 1
---- !u!4 &473539916 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5678767026918892378, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
-  m_PrefabInstance: {fileID: 1015088800}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &508002251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1579,7 +1574,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!1001 &559262456
 PrefabInstance:
@@ -3199,6 +3194,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Core Game Objects
       objectReference: {fileID: 0}
+    - target: {fileID: 4349364930375274722, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4349364930375274722, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
+      propertyPath: m_OverrideSorting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5678767026918892378, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3241,10 +3244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5678767026918892378, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1571892799}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5ed06386c91d714993852b04d2f48d4, type: 3}
 --- !u!1 &1031084152
@@ -3449,7 +3449,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1072546240
 RectTransform:
@@ -4453,7 +4453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1501512915
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4535,7 +4535,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!1 &1536745946
 GameObject:
@@ -4712,7 +4712,7 @@ Transform:
   - {fileID: 84386030}
   - {fileID: 2046820981}
   - {fileID: 1072546240}
-  m_Father: {fileID: 473539916}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1571892800
 MonoBehaviour:
@@ -4950,6 +4950,7 @@ MonoBehaviour:
   - {fileID: 6591873835938418777, guid: 8c28bf62d11fe99489975249b00221d5, type: 3}
   prefabEnemyPuck:
   - {fileID: 741239491}
+  boardBounds: 6.5
 --- !u!4 &1675108361
 Transform:
   m_ObjectHideFlags: 0
@@ -6021,7 +6022,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!1 &2046820980
 GameObject:
@@ -6125,7 +6126,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!1 &2048861747
 GameObject:
@@ -6489,5 +6490,6 @@ SceneRoots:
   - {fileID: 806215619}
   - {fileID: 1542088124}
   - {fileID: 1675108361}
+  - {fileID: 1571892799}
   - {fileID: 1550444838}
   - {fileID: 2049221751}

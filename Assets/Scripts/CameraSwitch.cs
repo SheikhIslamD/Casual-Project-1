@@ -22,7 +22,7 @@ public class CameraSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (camSwitch.WasPerformedThisFrame())
+        if (camSwitch.WasPerformedThisFrame() && PlayerController.doneIntro)
         {
             //update this code to make pieceInPlay actually track the CURRENT launched piece
             //rn it's using the "Player Piece" tag which is an issue since multiple player pieces will be laying on-field

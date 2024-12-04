@@ -20,6 +20,9 @@ public class LevelManager : MonoBehaviour
     public GameObject[] prefabPlayerPuck;
     public GameObject[] prefabEnemyPuck;
 
+    //so board is set in each scene
+    public float boardBounds;
+
     //public static variable to let other scripts know that level is over
     public static bool levelOver = false;
 
@@ -91,7 +94,10 @@ public class LevelManager : MonoBehaviour
         //recount the array to have the right turns
         turnMax = prefabPlayerPuck.Length;
         turn = 0;
-        PlayerController.playing = true;
+        if (PlayerController.doneIntro)
+        {
+            PlayerController.playing = true;
+        }
         Debug.Log("playing state set");
 
         if (SceneManager.GetActiveScene().name != "Intro" )

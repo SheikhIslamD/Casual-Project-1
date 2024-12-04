@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -13,10 +14,9 @@ public class IntroSceneHandler : MonoBehaviour
     InputAction movementKeys;
     InputAction jumpKey;
 
-    bool playOnce;
-    bool shown;
-    bool checking;
-    bool checkingLaunch;
+    int activeCanvas = 0;
+    bool delay;
+
 
     private void Awake()
     {
@@ -33,6 +33,8 @@ public class IntroSceneHandler : MonoBehaviour
 
         if (!PlayerController.doneIntro)
         {
+            PlayerController.playing = false;
+            Canvases[0].SetActive(true);
             StartCoroutine(RunIntro());
         }
         else
@@ -43,64 +45,58 @@ public class IntroSceneHandler : MonoBehaviour
 
     void Update()
     {
-        if (checking)
-        {
-            // Take Input
-            float horizontal = movementKeys.ReadValue<Vector2>().x;
-
-            if (horizontal > 0 && !shown)
-            {
-                StartCoroutine(RunAimIntro());
-            }
-
-            if (lm.turn == lm.turnMax - 1 && !playOnce)
-            {
-                Canvases[6].SetActive(true);
-                playOnce = true;
-                PlayerController.doneIntro = true;
-            }
-        }
-        if (checkingLaunch)
-        {
-            if (jumpKey.WasPressedThisFrame() || jumpKey.IsPressed())
-            {
-                Canvases[5].SetActive(false);
-                Canvases[6].SetActive(false);
-            }
-        }
+        
     }
-
 
     IEnumerator RunIntro()
     {
-        yield return new WaitForSeconds(3f);
-        Canvases[0].SetActive(false);
-        Canvases[1].SetActive(true);
+        yield return new WaitUntil(jumpKey.WasReleasedThisFrame);
+        canvasSwap(activeCanvas, activeCanvas + 1);
 
-        yield return new WaitForSeconds(10f);
-        Canvases[1].SetActive(false);
-        Canvases[2].SetActive(true);
+        if (activeCanvas == 6)
+        {
+            Canvases[6].SetActive(false);
+            yield break;
+        }
 
-        lm.prefabEnemyPuck[0].SetActive(true);
-
-        yield return new WaitForSeconds(8f);
-        Canvases[2].SetActive(false);
-        Canvases[3].SetActive(true);
-        PlayerController.canMove = true;
-        checking = true;
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(RunIntro());
     }
-    public IEnumerator RunAimIntro()
-    {
-        yield return new WaitForSeconds(1f);
-        Canvases[3].SetActive(false);
-        Canvases[4].SetActive(true);
-        PlayerController.canAim = true;
-        shown = true;
 
-        yield return new WaitForSeconds(4f);
-        Canvases[4].SetActive(false);
-        Canvases[5].SetActive(true);
-        PlayerController.canLaunch = true;
-        checkingLaunch = true;
+    IEnumerator RunSpecial()
+    {
+        Canvases[6].SetActive(true);
+        yield return new WaitUntil(jumpKey.WasReleasedThisFrame);
+        Canvases[6].SetActive(false);
+    }
+
+    // When interacted with skip canvas
+    void canvasSwap(int current, int next)
+    {
+        Canvases[current].SetActive(false);
+        Canvases[next].SetActive(true);
+        activeCanvas++;
+
+        switch (activeCanvas)
+        {
+            case 1:
+                PlayerController.playing = true;
+                break;
+            case 2:
+                lm.prefabEnemyPuck[0].SetActive(true);
+                break;
+            case 3:
+                PlayerController.canMove = true;
+                break;
+            case 4:
+                PlayerController.canAim = true;
+                break;
+            case 5:
+                PlayerController.canLaunch = true;
+                PlayerController.doneIntro = true;
+                break;
+        }
+
+        if (lm.turn == 2) StartCoroutine(RunSpecial());
     }
 }
