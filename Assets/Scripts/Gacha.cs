@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Gacha : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Gacha : MonoBehaviour
     [SerializeField] PlayerController playerController;
     public GameObject mainCam;
     public GameObject eventSystem;
+
+    [SerializeField] Animator gachaAnim;
+    [SerializeField] Material[] ball = new Material[6];
     //help me
 
 
@@ -58,12 +62,29 @@ public class Gacha : MonoBehaviour
 
     public void Roll()
     {
-        Debug.Log("Pulling time! Good luck!");
-        PlayerController.tunaPoints--;
-        currency.text = PlayerController.tunaPoints.ToString();
+
+        if (PlayerController.tunaPoints > 0)
+        {
+            gachaAnim.SetTrigger("Play");
+
+            Debug.Log("Pulling time! Good luck!");
+            PlayerController.tunaPoints--;
+            currency.text = PlayerController.tunaPoints.ToString();
+
+            StartCoroutine(RevealDelay());
+            
+        }
         
+    }
+
+    IEnumerator RevealDelay()
+    {
+        yield return new WaitForSeconds(3.75f);
+    
         int random = Random.Range(0, 4);
         playerController.hatsUnlocked[random] = true;
         yourRoll.text = "You unlocked the " + playerController.hats[random].name + " hat!";
+        gachaAnim.ResetTrigger("Play");
+
     }
 }
