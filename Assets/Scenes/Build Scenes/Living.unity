@@ -442,6 +442,7 @@ MonoBehaviour:
   - {fileID: 1737729514}
   - {fileID: 670771482}
   - {fileID: 1469580911}
+  boardBounds: 6.5
 --- !u!4 &589955771
 Transform:
   m_ObjectHideFlags: 0

@@ -20,6 +20,9 @@ public class LevelManager : MonoBehaviour
     public GameObject[] prefabPlayerPuck;
     public GameObject[] prefabEnemyPuck;
 
+    //so board is set in each scene
+    public float boardBounds;
+
     //public static variable to let other scripts know that level is over
     public static bool levelOver = false;
 

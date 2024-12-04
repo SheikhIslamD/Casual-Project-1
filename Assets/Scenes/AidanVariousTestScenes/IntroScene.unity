@@ -4950,6 +4950,7 @@ MonoBehaviour:
   - {fileID: 6591873835938418777, guid: 8c28bf62d11fe99489975249b00221d5, type: 3}
   prefabEnemyPuck:
   - {fileID: 741239491}
+  boardBounds: 6.5
 --- !u!4 &1675108361
 Transform:
   m_ObjectHideFlags: 0

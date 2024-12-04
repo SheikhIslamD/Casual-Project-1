@@ -3419,6 +3419,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3686494589422432928, guid: f77fb2f2a5e33394eb6632a4461033e9, type: 3}
+      propertyPath: boardBounds
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3686494589422432928, guid: f77fb2f2a5e33394eb6632a4461033e9, type: 3}
       propertyPath: prefabEnemyPuck.Array.size
       value: 4
       objectReference: {fileID: 0}

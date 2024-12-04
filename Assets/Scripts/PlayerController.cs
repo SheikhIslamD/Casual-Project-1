@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     GameObject player;
     Rigidbody rb;
 
-    public float boardBounds;
+    
 
     float force = 20f;
     float forceRate = 10f;
@@ -129,15 +129,15 @@ public class PlayerController : MonoBehaviour
         float horizontal = movementKeys.ReadValue<Vector2>().x;
 
         // Set Input Bounds
-        if (transform.position.x <= -boardBounds || rb.transform.position.x <= -boardBounds)
+        if (transform.position.x <= -lm.boardBounds || rb.transform.position.x <= -lm.boardBounds)
         {
-            transform.position = new Vector3(-boardBounds, transform.position.y, transform.position.z);
-            rb.transform.position = new Vector3(-boardBounds, rb.transform.position.y, rb.transform.position.z);
+            transform.position = new Vector3(-lm.boardBounds, transform.position.y, transform.position.z);
+            rb.transform.position = new Vector3(-lm.boardBounds, rb.transform.position.y, rb.transform.position.z);
         }
-        else if (transform.position.x >= boardBounds || rb.transform.position.x >= boardBounds)
+        else if (transform.position.x >= lm.boardBounds || rb.transform.position.x >= lm.boardBounds)
         {
-            transform.position = new Vector3(boardBounds, transform.position.y, transform.position.z);
-            rb.transform.position = new Vector3(boardBounds, rb.transform.position.y, rb.transform.position.z);
+            transform.position = new Vector3(lm.boardBounds, transform.position.y, transform.position.z);
+            rb.transform.position = new Vector3(lm.boardBounds, rb.transform.position.y, rb.transform.position.z);
         }
 
         // Move
