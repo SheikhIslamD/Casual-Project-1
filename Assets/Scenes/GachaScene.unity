@@ -877,9 +877,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 513817507}
-        m_TargetAssemblyTypeName: SceneHandler, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 513817512}
+        m_TargetAssemblyTypeName: Gacha, Assembly-CSharp
+        m_MethodName: Roll
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -936,14 +936,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 513817507}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fca2303bc90b4afa98c7d70230af7af, type: 3}
+  m_Script: {fileID: 11500000, guid: d3deb2afc809867428f60f1846f67593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tunacanSound: {fileID: 0}
-  blink: {fileID: 0}
-  audioSource: {fileID: 0}
-  currentSceneRoot: {fileID: 428377256}
-  whereTo: Menu
+  currency: {fileID: 0}
+  yourRoll: {fileID: 0}
+  playerController: {fileID: 0}
+  mainCam: {fileID: 0}
+  eventSystem: {fileID: 0}
+  gachaAnim: {fileID: 0}
+  color:
+  - {fileID: 2100000, guid: 3912c4ffceb0ca74d86b652c6d1d2e92, type: 2}
+  - {fileID: 2100000, guid: feedb12d9c5eca640901d280731a4170, type: 2}
+  - {fileID: 2100000, guid: 2a7ea2361f439734b847ae82aa3603bc, type: 2}
+  - {fileID: 2100000, guid: 1d72b0c6bfdb97542a8fc7704506a958, type: 2}
+  - {fileID: 2100000, guid: 33bd27b24ff439f4caaec2b7bcbb4e32, type: 2}
+  - {fileID: 2100000, guid: d747cd7d0b4d50f46adf694aa90ad54e, type: 2}
+  ball: {fileID: 414046454}
 --- !u!1 &552424063
 GameObject:
   m_ObjectHideFlags: 0

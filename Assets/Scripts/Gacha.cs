@@ -13,7 +13,8 @@ public class Gacha : MonoBehaviour
     public GameObject eventSystem;
 
     [SerializeField] Animator gachaAnim;
-    [SerializeField] Material[] ball = new Material[6];
+    [SerializeField] Material[] color = new Material[6];
+    [SerializeField] MeshRenderer ball;
     //help me
 
 
@@ -65,6 +66,7 @@ public class Gacha : MonoBehaviour
 
         if (PlayerController.tunaPoints > 0)
         {
+            ball.material = color[Random.Range(0,5)];
             gachaAnim.SetTrigger("Play");
 
             Debug.Log("Pulling time! Good luck!");
